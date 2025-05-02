@@ -15,7 +15,9 @@ path=("$HOME/.local/bin"
     /sbin
     /usr/local/bin
     /usr/local/cuda/bin
-    /opt/homebrew/opt/asdf/libexec/asdf.sh)
+    /opt/homebrew/opt/asdf/libexec/asdf.sh
+    "$HOME/.asdf/shims"
+)
 export PATH
 
 # MacPorts Installer addition on 2023-03-01_at_13:12:17: adding an appropriate PATH variable for use with MacPorts.
