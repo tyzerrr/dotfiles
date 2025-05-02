@@ -5,7 +5,7 @@ bindkey -e
 alias vi="nvim"
 alias vim="nvim"
 alias clip="pbcopy"
-alias ls='lsd -F --hyperlink=auto'
+alias gls='lsd -F --hyperlink=auto'
 alias lgit="lazygit"
 alias bs="builtin source"
 
