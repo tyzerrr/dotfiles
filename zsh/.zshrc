@@ -7,6 +7,7 @@ alias vim="nvim"
 alias clip="pbcopy"
 alias ls='lsd -F --hyperlink=auto'
 alias lgit="lazygit"
+alias bs="builtin source"
 
 # option
 setopt AUTO_PUSHD
@@ -25,6 +26,17 @@ setopt NO_FLOW_CONTROL
 setopt NO_CLOBBER
 setopt HIST_IGNORE_DUPS
 setopt HIST_NO_STORE
+
+# source function with zcompile (precompile)
+source() {
+    local input="$1"
+    local cache="$input.zwc"
+    # もしCacheがないか、古いキャッシュなら再度コンパイル
+    if [[ ! -f "$cache" || "$input" -nt "$cache" ]]; then
+        zcompile "$input"
+    fi
+    \builtin source "$@"
+}
 
 # zsh theme(zenosh)
 source /opt/homebrew/share/zsh/site-functions/async
@@ -52,56 +64,19 @@ zshaddhistory() {
     [[ ! "$line" =~ "^(cd|jj?|lazygit|la|ll|ls|rm|rmdir)($| )" ]]
 }
 
-# NOTE: Git custom functions
-git() {
-    if ! command -v "git-$1" > /dev/null; then
-        command git "${@:1}"
-    else
-        "git-$1" "${@:2}"
+sheldon::load() {
+    local profile="$1"
+    local plugins_file="$XDG_CONFIG_HOME/sheldon/plugins.toml"
+    local cache_file="$XDG_CACHE_HOME/sheldon/$profile.zsh"
+    if [[ ! -f "$cache_file" || "$plugins_file" -nt "$cache_file" ]]; then
+        mkdir -p "$XDG_CACHE_HOME/sheldon"
+        sheldon --profile="$profile" source > "$cache_file"
+        zcompile "$cache_file"
     fi
+    \builtin source "$cache_file"
 }
 
-git-change() {
-    command git checkout $(git branch --all | fzf)
-}
-
-# NOTE: Docker custom functions
-docker() {
-    if [ "$1" = "compose" ] || ! command -v "docker-$1" >/dev/null; then
-        command docker "${@:1}" # 通常通りdockerコマンドを呼び出す
-    else
-        "docker-$1" "${@:2}" # docker-foo というコマンドが存在するときはそちらを起動する
-    fi
-}
-
-# Exitedなプロセスを全て消去する
-docker-clean() {
-    command docker ps -aqf status=exited | xargs -r docker rm --
-}
-
-# Untaggedなイメージを全て削除する
-docker-cleani() {
-    command docker images -qf dangling=true | xargs -r docker rmi --
-}
-
-# 引数なしのdocker rmはfzfで起動する
-docker-rm() {
-    if [ "$#" -eq 0 ]; then
-        command docker ps -a | fzf --exit-0 --multi --header-lines=1 | awk '{ print $1 }' | xargs -r docker rm --
-    else
-        command docker rm "$@"
-    fi
-}
-
-# 引数なしのdocker rmiはfzfで起動する
-docker-rmi() {
-    if [ "$#" -eq 0 ]; then
-        command docker images | fzf --exit-0 --multi --header-lines=1 | awk '{ print $3 }' | xargs -r docker rmi --
-    else
-        command docker rmi "$@"
-    fi
-}
+sheldon::load eager
 
 # hooks
 eval "$(direnv hook zsh)"
-eval "$(sheldon source)"
