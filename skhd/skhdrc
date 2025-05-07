@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Window management
+# Application Handling
+# [Domain] Brave Browser
+# [Action] Open
+shift + ctrl - b : open "/Applications/Brave Browser.app/"
+# [Action] Close
+shift + cmd - b : osascript -e 'tell application "Brave Browser" to quit'
+
+# [Domain] Google Chrome
+# [Action] Open
+shift + ctrl - g : open "/Applications/Google Chrome.app/"
+# [Action] Close
+shift + cmd - g : osascript 'tell application "Google Chrome" to quit'
+# WezTerm, my lovely tty
+# [Action] Open
+shift + ctrl - w : "wezterm"
+# [Action] Close
+shift + cmd - w : osascript -e 'tell application "WezTerm" to quit'
+# [Domain] Slack
+# [Action] Open
+shift + ctrl - s : open "/Applications/Slack.app/"
+# [Action] Close
+shift + cmd - s : osascript -e 'tell application "Slack" to quit'
+
