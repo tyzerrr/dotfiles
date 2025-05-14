@@ -66,7 +66,7 @@ zshaddhistory() {
 
 sheldon::load() {
     local profile="$1"
-    local plugins_file="$XDG_CONFIG_HOME/sheldon/plugins.toml"
+    local plugins_file="$XDG_CONFIG_HOME/zsh/plugins.toml"
     local cache_file="$XDG_CACHE_HOME/sheldon/$profile.zsh"
     if [[ ! -f "$cache_file" || "$plugins_file" -nt "$cache_file" ]]; then
         mkdir -p "$XDG_CACHE_HOME/sheldon"
