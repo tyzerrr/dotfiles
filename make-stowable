@@ -18,6 +18,11 @@ fi
 
 for pkg_dir in */; do
     pkg_name=${pkg_dir%/}
+    if [[ -d ${pkg_name}/.config ]]; then
+        echo "Not running abount ${pkg_name}, because already we have ${pkg_name}/.config/"
+        continue
+    fi
+
     if [[ "$DRY_RUN" = 1 ]]; then
         echo "[DRY RUN] Package: $pkg_name"
         echo "  mkdir -p \"${pkg_name}-temp/.config\""
