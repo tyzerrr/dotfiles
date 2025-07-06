@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export CONFIG_DIR="$XDG_CONFIG_HOME/sketchybar"
+export PLUGIN_DIR="$CONFIG_DIR/plugins"
+export ITEM_DIR="$CONFIG_DIR/items"
+export THEME_DIR="$CONFIG_DIR/themes"
