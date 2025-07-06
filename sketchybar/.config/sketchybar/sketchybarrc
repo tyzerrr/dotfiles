@@ -57,7 +57,7 @@ source "$ITEM_DIR/front_app"
 source "$ITEM_DIR/clock"
 
 # Automatically apply configuration changes
-sketchbar --hotloaded on
+sketchybar --hotloaded on
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
