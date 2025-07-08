@@ -46,6 +46,6 @@ vim.keymap.set("n", "<leader>cc", "<cmd>Clipper<CR>")
 
 -- tmux-sessionizer
 vim.keymap.set("n", "<C-k>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<C-v>", "<cmd>silent !tmux neww tmux-sessionizer list<CR>")
+vim.keymap.set("n", "<C-r>", "<cmd>silent !tmux neww tmux-sessionizer list<CR>")
 vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux neww tmux-sessionizer delete<CR>")
 vim.keymap.set("n", "<C-h>", "<cmd>silent !tmux neww tmux-sessionizer create<CR>")
