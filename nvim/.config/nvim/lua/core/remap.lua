@@ -24,7 +24,6 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 --save and format
 vim.keymap.set("n", "<C-s>", function()
-    vim.lsp.buf.format()
     vim.cmd("w")
 end)
 
