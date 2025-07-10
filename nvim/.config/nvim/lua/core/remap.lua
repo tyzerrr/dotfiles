@@ -22,13 +22,15 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
---save and format
+--save
+--conform.nvim, format plugin is automatically called, so unnecessary vim.lsp.format()
 vim.keymap.set("n", "<C-s>", function()
 	vim.cmd("w")
 end)
 
 --replace macro
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- chmod macro
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- jump half screen but cursor stll remains center of screen.

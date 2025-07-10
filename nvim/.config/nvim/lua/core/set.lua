@@ -18,3 +18,10 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
+
+--- for nvim-ufo (folding plugin)
+--- folding level is higher, more-neted code will be opened
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldcolumn = "1"
+vim.opt.foldenable = true
