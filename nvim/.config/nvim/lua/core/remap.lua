@@ -51,3 +51,12 @@ vim.keymap.set("n", "<C-k>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<C-r>", "<cmd>silent !tmux neww tmux-sessionizer list<CR>")
 vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux neww tmux-sessionizer delete<CR>")
 vim.keymap.set("n", "<C-h>", "<cmd>silent !tmux neww tmux-sessionizer create<CR>")
+
+-- text yank highlight
+vim.api.nvim_create_autocmd("TextYankPost", {
+	pattern = "*",
+	group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
