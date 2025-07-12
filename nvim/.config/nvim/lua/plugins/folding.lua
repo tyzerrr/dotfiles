@@ -13,6 +13,7 @@ return {
 
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "neo-tree" },
+			group = vim.api.nvim_create_augroup("tlexcypher-text-folding", { clear = true }),
 			callback = function()
 				require("ufo").detach()
 				vim.opt_local.foldenable = false
