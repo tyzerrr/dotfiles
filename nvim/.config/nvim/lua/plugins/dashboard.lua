@@ -21,6 +21,7 @@ return {
 				statusline = false,
 			},
 			config = {
+				vim.fn.foldlevel(99),
 				header = vim.split(logo, "\n"),
                 -- stylua: ignore
                 center = {
