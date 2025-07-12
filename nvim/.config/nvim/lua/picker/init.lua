@@ -29,7 +29,6 @@ end
 --- open config files
 M.config_files = function()
 	local cwd = vim.fn.expand("~") .. "/.dotfiles/nvim/.config/nvim"
-	print(cwd)
 	return M.pick("find_files", { cwd = cwd })
 end
 return M
