@@ -61,5 +61,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+-- hotreload for tex file
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*.tex",
+	group = vim.api.nvim_create_augroup("funalab-tex-hotreload", { clear = true }),
+	callback = function()
+		if
+			vim.fn.executable("tex-hotreload") == 1
+			and string.find(vim.fn.getcwd(), "thesis-template-with-docker", 1, true)
+		then
+			vim.fn.jobstart({ "tex-hotreload" })
+			vim.notify("hotreloading done...", vim.log.levels.INFO)
+		end
+	end,
+})
+
 -- for plugin dev, plenary-busted
 vim.keymap.set("n", "<leader>tf", "<cmd>PlenaryBustedFile %<CR>", {})
