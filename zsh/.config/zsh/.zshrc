@@ -11,8 +11,8 @@ alias vim="nvim"
 alias clip="pbcopy"
 alias gls='lsd -F --hyperlink=auto'
 alias lgit="lazygit"
-alias bs="builtin source"
-alias ls="lsd"
+alias bsource="builtin source"
+alias ls="lsd -a"
 
 # option
 setopt AUTO_PUSHD
