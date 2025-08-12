@@ -1,7 +1,7 @@
 # NOTE: This is the most important to use C-e in tmux env
 bindkey -e
 bindkey -s ^k "tmux-sessionizer\n"
-bindkey -s ^r "tmux-sessionizer list\n"
+bindkey -s ^q "tmux-sessionizer list\n"
 bindkey -s ^g "tmux-sessionizer delete\n"
 bindkey -s ^h "tmux-sessionizer create\n"
 
