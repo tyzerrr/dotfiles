@@ -13,6 +13,8 @@ alias gls='lsd -F --hyperlink=auto'
 alias lgit="lazygit"
 alias bsource="builtin source"
 alias ls="lsd -a"
+alias k="kubectl"
+alias tf="terraform"
 
 # option
 setopt AUTO_PUSHD
