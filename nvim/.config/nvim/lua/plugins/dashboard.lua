@@ -25,14 +25,16 @@ return {
 				header = vim.split(logo, "\n"),
                 -- stylua: ignore
                 center = {
-                    { action = 'lua Picker.pick("find_files")()',                   desc = " Find File",       icon = " ",     key = "f" },
-                    { action = "ene | startinsert",                                 desc = " New File",        icon = " ",     key = "n" },
-                    { action = 'lua Picker.pick("oldfiles")()',                     desc = " Recent Files",    icon = " ",     key = "r" },
-                    { action = 'lua Picker.pick("live_grep")()',                    desc = " Find Text",       icon = " ",     key = "g" },
-                    { action = 'lua Picker.config_files()()',                       desc = " Config",          icon = " ",     key = "c" },
-                    { action = "Lazy",                                              desc = " Lazy",            icon = "󰒲 ",     key = "l" },
-                    { action = "Mason",                                             desc = " Mason",           icon = "󱛝 ",       key = "m" },
-                    { action = function() vim.api.nvim_input("<cmd>qa<cr>") end,    desc = " Quit",            icon = " ",     key = "q" },
+                    { action = 'lua Picker.pick("find_files")()',                   desc = " Find File",         icon = " ",     key = "f" },
+                    { action = "ene | startinsert",                                 desc = " New File",          icon = " ",     key = "n" },
+                    { action = 'lua Picker.pick("oldfiles")()',                     desc = " Recent Files",      icon = " ",     key = "r" },
+                    { action = 'lua Picker.pick("live_grep")()',                    desc = " Find Text",         icon = " ",     key = "g" },
+                    { action = 'lua Picker.config_files()()',                       desc = " Config",            icon = " ",     key = "c" },
+                    { action = 'lua Picker.dotfiles()()',                           desc = " Dot File",          icon = " ",     key = "d" },
+                    { action = 'lua Picker.personal_projects()()',                  desc = " Personal Projects", icon = " ",     key = "p" },
+                    { action = "Lazy",                                              desc = " Lazy",              icon = "󰒲 ",     key = "l" },
+                    { action = "Mason",                                             desc = " Mason",             icon = "󱛝 ",     key = "m" },
+                    { action = function() vim.api.nvim_input("<cmd>qa<cr>") end,    desc = " Quit",              icon = " ",     key = "q" },
                 },
 				footer = function()
 					local stats = require("lazy").stats()
