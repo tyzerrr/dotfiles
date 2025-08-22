@@ -8,3 +8,4 @@ window-theme = ghostty
 background-opacity = 0.7
 background-blur-radius = 20
 macos-titlebar-style = transparent
+font-feature = -dlig
