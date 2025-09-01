@@ -17,6 +17,7 @@ path=("$HOME/.local/bin"
     /usr/local/cuda/bin
     /opt/homebrew/opt/asdf/libexec/asdf.sh
     "$HOME/.asdf/shims"
+    "$GOPATH/bin"
 )
 export PATH
 

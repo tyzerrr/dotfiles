@@ -32,7 +32,7 @@ github = "zsh-users/zsh-autosuggestions"
 apply = ["defer"]
 profiles=["lazy"]
 
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
-apply = ["defer"]
-profiles=["lazy"]
+# [plugins.zsh-syntax-highlighting]
+# github = "zsh-users/zsh-syntax-highlighting"
+# apply = ["defer"]
+# profiles=["lazy"]
