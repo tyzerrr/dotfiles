@@ -11,23 +11,29 @@ function ColorMyPencils(color)
 end
 
 return {
+	-- {
+	--   "folke/tokyonight.nvim",
+	--   lazy = false, -- 起動時にロード
+	--   priority = 1000, -- 他のUIプラグインより先にロード
+	--   config = function()
+	--     vim.cmd.colorscheme "tokyonight"
+	--     ColorMyPencils()
+	--   end,
+	-- },
 	{
-		"folke/tokyonight.nvim",
-		lazy = false, -- 起動時にロード
-		priority = 1000, -- 他のUIプラグインより先にロード
+		"rose-pine/neovim",
+		name = "rose-pine",
+		-- enabled = false, -- デフォルトでは無効化しておく例
+		lazy = false,
+		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("tokyonight")
-			-- ColorMyPencils()
+			require("rose-pine").setup({
+				styles = {
+					italic = false,
+				},
+			})
+			vim.cmd.colorscheme("rose-pine")
+			ColorMyPencils()
 		end,
 	},
-	-- {
-	--   "rose-pine/neovim",
-	--   name = "rose-pine",
-	--   enabled = false, -- デフォルトでは無効化しておく例
-	--   lazy = false,
-	--   priority = 1000,
-	--   config = function()
-	--     vim.cmd.colorscheme "rose-pine"
-	--   end
-	-- },
 }
