@@ -1,0 +1,44 @@
+# NOTE: This is the most important to use C-e in tmux env
+bindkey -e
+bindkey -s ^k "tmux-sessionizer\n"
+bindkey -s ^q "tmux-sessionizer list\n"
+bindkey -s ^g "tmux-sessionizer delete\n"
+bindkey -s ^h "tmux-sessionizer create\n"
+
+# alias
+alias vi="nvim"
+alias vim="nvim"
+alias clip="pbcopy"
+alias gls='lsd -F --hyperlink=auto'
+alias lgit="lazygit"
+alias bsource="builtin source"
+alias ls="lsd -a"
+alias k="kubectl"
+alias tf="terraform"
+
+# option
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt GLOBDOTS
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+setopt NO_FLOW_CONTROL
+setopt NO_CLOBBER
+setopt HIST_IGNORE_DUPS
+setopt HIST_NO_STORE
+
+# If exit status is not 0, not added history
+zshaddhistory() {
+    local line="${1%%$'\n'}"
+    [[ ! "$line" =~ "^(cd|jj?|lazygit|la|ll|ls|rm|rmdir)($| )" ]]
+}
+
+# hooks
+eval "$(direnv hook zsh)"
