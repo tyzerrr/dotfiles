@@ -67,3 +67,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- for plugin dev, plenary-busted
 vim.keymap.set("n", "<leader>tf", "<cmd>PlenaryBustedFile %<CR>", {})
+vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {})

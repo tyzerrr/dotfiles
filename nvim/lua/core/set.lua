@@ -1,4 +1,5 @@
 vim.opt.guicursor = ""
+vim.opt.autoread = true
 vim.opt.nu = true
 vim.opt.rnu = true
 vim.opt.tabstop = 4
