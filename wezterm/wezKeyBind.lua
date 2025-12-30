@@ -101,24 +101,14 @@ function module.apply_to_config(config)
         },
         -- launch tmux-sessionizer
         {
-            key = "j",
+            key = "k",
             mods = "CTRL",
             action = wezterm.action.SendString("tmux-sessionizer\n"),
         },
         {
-            key = "l",
+            key = "q",
             mods = "CMD",
             action = wezterm.action.SendString("tmux-sessionizer list\n")
-        },
-        {
-            key = "k",
-            mods = "CTRL",
-            action = wezterm.action.SendString("tmux-sessionizer create\n")
-        },
-        {
-            key = "d",
-            mods = "CTRL",
-            action = wezterm.action.SendString("tmux-sessionizer delete\n")
         },
 
     }
