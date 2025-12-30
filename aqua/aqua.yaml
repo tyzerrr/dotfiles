@@ -40,3 +40,8 @@ packages:
   - name: suzuki-shunsuke/tfcmt@v4.14.13
   - name: ahmetb/kubectx@v0.9.5
   - name: aws/aws-cli@2.32.21
+  - name: astral-sh/uv@0.9.18
+  - name: astral-sh/ruff@0.14.10
+  - name: pnpm/pnpm@v10.26.2
+  - name: aws/session-manager-plugin@1.2.764.0
+  - name: JohnnyMorganz/StyLua@v2.3.1
