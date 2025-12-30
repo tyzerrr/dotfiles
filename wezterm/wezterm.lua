@@ -5,6 +5,7 @@ local wezColorScheme = require("wezColorScheme")
 local wezOpacity = require("wezOpacity")
 local wezInit = require("wezInit")
 local wezCursor = require("wezCursor")
+local wezTabBar = require("wezTabBar")
 require("wezCopyMode")
 require("wezFullScreen")
 
@@ -15,6 +16,7 @@ wezFont.apply_to_config(config)
 wezColorScheme.apply_to_config(config)
 wezOpacity.apply_to_config(config)
 wezFontSize.apply_to_config(config)
+wezTabBar.apply_to_config(config)
 wezCursor.apply_to_config(config)
 
 return config

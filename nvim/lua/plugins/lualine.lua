@@ -22,6 +22,15 @@ return {
                 lualine_z = { "location" },
             },
             -- ... 他のセクション設定
+
+            inactive_sections = {
+                lualine_a = { "mode" },
+                lualine_b = { "branch", "diff", { "diagnostics", sources = { "nvim_diagnostic" } } },
+                lualine_c = { { "filename", path = 1 } }, -- path=1: relative path
+                lualine_x = { "encoding", "fileformat", "filetype" },
+                lualine_y = { "progress" },
+                lualine_z = { "location" },
+            },
         })
     end,
 }

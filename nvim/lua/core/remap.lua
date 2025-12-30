@@ -25,7 +25,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 --save
 --conform.nvim, format plugin is automatically called, so unnecessary vim.lsp.format()
 vim.keymap.set("n", "<C-s>", function()
-    vim.cmd("w")
+	vim.cmd("w")
 end)
 
 --replace macro
@@ -49,8 +49,6 @@ vim.keymap.set("n", "<leader>cc", "<cmd>Clipper<CR>")
 -- tmux-sessionizer
 vim.keymap.set("n", "<C-k>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<C-q>", "<cmd>silent !tmux neww tmux-sessionizer list<CR>")
-vim.keymap.set("n", "<C-g>", "<cmd>silent !tmux neww tmux-sessionizer delete<CR>")
-vim.keymap.set("n", "<C-h>", "<cmd>silent !tmux neww tmux-sessionizer create<CR>")
 
 -- quickfix great navigation
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<cr>")
@@ -58,13 +56,17 @@ vim.keymap.set("n", "<M-k>", "<cmd>cprev<cr>")
 
 -- text yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
-    pattern = "*",
-    group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+	pattern = "*",
+	group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- for plugin dev, plenary-busted
 vim.keymap.set("n", "<leader>tf", "<cmd>PlenaryBustedFile %<CR>", {})
+-- zen-mode
 vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {})
+
+-- for japanese input
+--
