@@ -8,7 +8,6 @@ return {
 		},
 		config = function()
 			require("mason").setup()
-
 			local capabilities = {}
 			local ok, blink = pcall(require, "blink.cmp")
 			if ok then
@@ -24,6 +23,20 @@ return {
 			for _, server_name in ipairs(servers) do
 				local config = vim.lsp.config[server_name] or {}
 				config.capabilities = vim.tbl_deep_extend("force", config.capabilities or {}, capabilities)
+
+				if server_name == "lua_ls" then
+					config.settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" },
+							},
+							workspace = {
+								library = vim.api.nvim_get_runtime_file("", true),
+								checkThirdParty = false,
+							},
+						},
+					}
+				end
 				vim.lsp.config[server_name] = config
 				vim.lsp.enable(server_name)
 			end
