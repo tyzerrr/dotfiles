@@ -7,7 +7,7 @@ local wezInit = require("wezInit")
 local wezCursor = require("wezCursor")
 local wezTabBar = require("wezTabBar")
 require("wezCopyMode")
-require("wezFullScreen")
+-- require("wezFullScreen")
 
 local config = {}
 wezInit.apply_to_config(config)

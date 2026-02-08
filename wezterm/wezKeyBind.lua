@@ -6,8 +6,10 @@ local module = {}
 
 function module.apply_to_config(config)
 	config.disable_default_key_bindings = true
-	config.leader = { key = "w", mods = "CMD", timeout_milliseconds = 5000 }
+	config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 5000 }
 	config.keys = {
+
+		{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 		{
 			key = "\\",
 			mods = "LEADER",
@@ -20,7 +22,7 @@ function module.apply_to_config(config)
 		},
 		{
 			key = "w",
-			mods = "LEADER",
+			mods = "CMD",
 			action = wezterm.action.CloseCurrentPane({ confirm = true }),
 		},
 		{
@@ -50,19 +52,19 @@ function module.apply_to_config(config)
 		},
 		-- create new tab
 		{
-			key = "n",
-			mods = "LEADER",
+			key = "t",
+			mods = "CMD",
 			action = wezterm.action.SpawnTab("CurrentPaneDomain"),
 		},
 		-- change font size
 		{
 			key = "=",
-			mods = "CTRL",
+			mods = "CMD",
 			action = wezterm.action.IncreaseFontSize,
 		},
 		{
 			key = "-",
-			mods = "CTRL",
+			mods = "CMD",
 			action = wezterm.action.DecreaseFontSize,
 		},
 		-- copy to clipboard
