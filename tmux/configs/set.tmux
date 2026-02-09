@@ -9,8 +9,8 @@ set-option -g mouse on
 set -g mode-keys vi
 
 # Enable 24-bit color. DONT FORGET to add [export TERM="tmux-256color"] to .zshrc.
-set-option -g default-terminal "tmux-256color"
-set-option -ga terminal-overrides ",*256col*:Tc"
+set -g default-terminal "xterm-ghostty"
+set -ag terminal-overrides ",xterm-ghostty:Tc"
 
 # Rebase index
 set -g base-index 1
