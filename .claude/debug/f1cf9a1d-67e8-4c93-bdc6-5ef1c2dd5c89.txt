@@ -1,3 +1,0 @@
-2026-02-10T05:48:54.207Z [DEBUG] Getting matching hook commands for SessionEnd with query: prompt_input_exit
-2026-02-10T05:48:54.207Z [DEBUG] Found 0 hook matchers in settings
-2026-02-10T05:48:54.207Z [DEBUG] Matched 0 unique hooks for query "prompt_input_exit" (0 before deduplication)

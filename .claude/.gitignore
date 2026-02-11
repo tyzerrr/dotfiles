@@ -1,0 +1,17 @@
+# Ignore everything by default
+*
+
+# Allow shared configuration
+!.gitignore
+!CLAUDE.md
+!mcp.json
+!settings.json
+
+# Allow skills, agents/test-runner, commands directories
+!skills/
+!skills/**
+!agents/
+!agents/test-runner/
+!agents/test-runner/**
+!commands/
+!commands/**
