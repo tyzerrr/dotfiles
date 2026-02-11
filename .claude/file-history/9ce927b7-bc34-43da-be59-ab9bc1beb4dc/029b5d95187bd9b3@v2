@@ -10,7 +10,7 @@ ITEM_DIR="$CONFIG_DIR/items"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=40 blur_radius=30 color=0xE01a1b26
+sketchybar --bar position=top height=40 blur_radius=30 color=0x40000000
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -22,8 +22,8 @@ default=(
   padding_right=5
   icon.font="Hack Nerd Font:Bold:17.0"
   label.font="SF Pro:Semibold:17.0"
-  icon.color=0xffc0caf5
-  label.color=0xffc0caf5
+  icon.color=0xffffffff
+  label.color=0xffffffff
   icon.padding_left=4
   icon.padding_right=4
   label.padding_left=4
@@ -44,10 +44,10 @@ for monitor in $(aerospace list-monitors --format "%{monitor-appkit-nsscreen-scr
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
       drawing=on \
-      background.color=0x4424283b \
+      background.color=0x44ffffff \
       background.corner_radius=5 \
       background.drawing=on \
-      background.border_color=0xAA414868 \
+      background.border_color=0xAAFFFFFF \
       background.border_width=0 \
       background.height=25 \
       icon="$sid" \
@@ -112,8 +112,8 @@ sketchybar --add item clock right \
   --add item swap e \
   icon="" \
   label.font="Hack Nerd Font:Italic:13.0" \
-  icon.color=0x44565f89 \
-  label.color=0x44565f89
+  icon.color=0x44FFFFFF \
+  label.color=0x44FFFFFF
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update

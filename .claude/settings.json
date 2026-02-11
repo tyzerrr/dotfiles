@@ -1,0 +1,57 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr list)",
+      "Bash(gh pr view)",
+      "Bash(gh pr diff)",
+      "Bash(gh pr checks)",
+      "Bash(gh run view)",
+      "mcp__github__get_*",
+      "mcp__github__list_*",
+      "mcp__github__search_*",
+      "mcp__github__pull_request_read",
+      "mcp__github__issue_read",
+      "ReadMcpResourceTool(server=github)",
+      "Bash(uv run ruff)",
+      "Bash(uv run mypy)",
+      "Bash(uv run tox)",
+      "Bash(uv run pytest)",
+      "Bash(go test)",
+      "Bash(go build)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date)] idle_prompt hook triggered\" >> /tmp/claude-hooks.log && ~/.config/zsh/claude-notify.sh '入力を待っています'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date)] Stop hook triggered\" >> /tmp/claude-hooks.log && ~/.config/zsh/claude-notify.sh 'タスクが完了しました'"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "example-skills@anthropic-agent-skills": true,
+    "lua-lsp@claude-plugins-official": true,
+    "analysis@m3ai-claude-plugins": true,
+    "gokart@m3ai-claude-plugins": true
+  },
+  "language": "沖田総悟(銀魂)",
+  "alwaysThinkingEnabled": true
+}

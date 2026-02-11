@@ -1,0 +1,211 @@
+2026-02-10T05:48:56.909Z [DEBUG] [init] configureGlobalMTLS starting
+2026-02-10T05:48:56.909Z [DEBUG] [init] configureGlobalMTLS complete
+2026-02-10T05:48:56.909Z [DEBUG] [init] configureGlobalAgents starting
+2026-02-10T05:48:56.909Z [DEBUG] [init] configureGlobalAgents complete
+2026-02-10T05:48:56.913Z [DEBUG] Applying permission update: Adding 17 allow rule(s) to destination 'userSettings': ["Bash(gh pr list)","Bash(gh pr view)","Bash(gh pr diff)","Bash(gh pr checks)","Bash(gh run view)","mcp__github__get_*","mcp__github__list_*","mcp__github__search_*","mcp__github__pull_request_read","mcp__github__issue_read","ReadMcpResourceTool(server=github)","Bash(uv run ruff)","Bash(uv run mypy)","Bash(uv run tox)","Bash(uv run pytest)","Bash(go test)","Bash(go build)"]
+2026-02-10T05:48:56.913Z [DEBUG] [STARTUP] Loading MCP configs...
+2026-02-10T05:48:56.915Z [DEBUG] [ToolSearch:optimistic] mode=tst-auto, ENABLE_TOOL_SEARCH=undefined, result=true
+2026-02-10T05:48:56.915Z [DEBUG] [STARTUP] Running setup()...
+2026-02-10T05:48:56.915Z [DEBUG] Found 0 plugins (0 enabled, 0 disabled)
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: pyright-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: gopls-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: rust-analyzer-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: example-skills@anthropic-agent-skills - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: lua-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: analysis@m3ai-claude-plugins - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Plugin not available for MCP: gokart@m3ai-claude-plugins - error type: plugin-not-found
+2026-02-10T05:48:56.916Z [DEBUG] Loading skills from: managed=/Library/Application Support/ClaudeCode/.claude/skills, user=/Users/araki/.claude/skills, project=[]
+2026-02-10T05:48:56.917Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-02-10T05:48:56.917Z [DEBUG] Error log sink initialized
+2026-02-10T05:48:56.921Z [DEBUG] Plugin loading errors: Plugin pyright-lsp not found in marketplace claude-plugins-official, Plugin gopls-lsp not found in marketplace claude-plugins-official, Plugin rust-analyzer-lsp not found in marketplace claude-plugins-official, Plugin example-skills not found in marketplace anthropic-agent-skills, Plugin lua-lsp not found in marketplace claude-plugins-official, Plugin analysis not found in marketplace m3ai-claude-plugins, Plugin gokart not found in marketplace m3ai-claude-plugins
+2026-02-10T05:48:56.921Z [DEBUG] getPluginSkills: Processing 0 enabled plugins
+2026-02-10T05:48:56.921Z [DEBUG] Total plugin skills loaded: 0
+2026-02-10T05:48:56.921Z [DEBUG] Plugin loading errors: Plugin pyright-lsp not found in marketplace claude-plugins-official, Plugin gopls-lsp not found in marketplace claude-plugins-official, Plugin rust-analyzer-lsp not found in marketplace claude-plugins-official, Plugin example-skills not found in marketplace anthropic-agent-skills, Plugin lua-lsp not found in marketplace claude-plugins-official, Plugin analysis not found in marketplace m3ai-claude-plugins, Plugin gokart not found in marketplace m3ai-claude-plugins
+2026-02-10T05:48:56.921Z [DEBUG] Total plugin commands loaded: 0
+2026-02-10T05:48:56.921Z [DEBUG] [STARTUP] setup() completed in 6ms
+2026-02-10T05:48:56.921Z [DEBUG] [STARTUP] Loading commands and agents...
+2026-02-10T05:48:56.921Z [DEBUG] Registered 0 hooks from 0 plugins
+2026-02-10T05:48:56.923Z [DEBUG] [Claude in Chrome] Found chrome profiles: Profile 10, Profile 7, Profile 9, Profile 8
+2026-02-10T05:48:56.937Z [DEBUG] Plugin loading errors: Plugin pyright-lsp not found in marketplace claude-plugins-official, Plugin gopls-lsp not found in marketplace claude-plugins-official, Plugin rust-analyzer-lsp not found in marketplace claude-plugins-official, Plugin example-skills not found in marketplace anthropic-agent-skills, Plugin lua-lsp not found in marketplace claude-plugins-official, Plugin analysis not found in marketplace m3ai-claude-plugins, Plugin gokart not found in marketplace m3ai-claude-plugins
+2026-02-10T05:48:56.937Z [DEBUG] Total plugin agents loaded: 0
+2026-02-10T05:48:56.937Z [DEBUG] [Claude in Chrome] Found brave profiles: Default
+2026-02-10T05:48:56.938Z [DEBUG] Loaded 6 unique skills (managed: 0, user: 2, project: 0, additional: 0, legacy commands: 4)
+2026-02-10T05:48:56.938Z [DEBUG] getSkills returning: 6 skill dir commands, 0 plugin skills, 2 bundled skills
+2026-02-10T05:48:56.938Z [DEBUG] [STARTUP] Commands and agents loaded in 17ms
+2026-02-10T05:48:56.938Z [DEBUG] [STARTUP] Running showSetupScreens()...
+2026-02-10T05:48:56.939Z [DEBUG] [render] initLayout starting
+2026-02-10T05:48:56.939Z [DEBUG] Layout engine: yoga
+2026-02-10T05:48:56.940Z [DEBUG] [Claude in Chrome] Found arc profiles: Profile 1, Default, Profile 2
+2026-02-10T05:48:56.940Z [DEBUG] [Claude in Chrome] Extension not found in any browser
+2026-02-10T05:48:56.942Z [DEBUG] [render] initLayout complete
+2026-02-10T05:48:56.945Z [DEBUG] [keybindings] KeybindingSetup initialized with 100 bindings, 0 warnings
+2026-02-10T05:48:56.947Z [DEBUG] [render] first ink render: 304ms since process start
+2026-02-10T05:48:56.947Z [DEBUG] [keybindings] Watching for changes to /Users/araki/.claude/keybindings.json
+2026-02-10T05:48:56.957Z [DEBUG] Grove: Using fresh cached config
+2026-02-10T05:48:56.960Z [DEBUG] [render] initLayout starting
+2026-02-10T05:48:56.960Z [DEBUG] [Perfetto] initializePerfettoTracing called, env value: undefined
+2026-02-10T05:48:56.961Z [DEBUG] [render] initLayout complete
+2026-02-10T05:48:56.961Z [DEBUG] [keybindings] KeybindingSetup initialized with 100 bindings, 0 warnings
+2026-02-10T05:48:56.963Z [DEBUG] [render] first ink render: 320ms since process start
+2026-02-10T05:48:56.968Z [DEBUG] Git remote URL: git@github.com:tyzerrr/cc99.git
+2026-02-10T05:48:56.969Z [DEBUG] Parsed repository: tyzerrr/cc99 from git@github.com:tyzerrr/cc99.git
+2026-02-10T05:48:56.969Z [DEBUG] Parsed repository: tyzerrr/cc99 from URL: git@github.com:tyzerrr/cc99.git
+2026-02-10T05:48:56.969Z [DEBUG] Path /Users/araki/personalDev/cc99 already tracked for repo tyzerrr/cc99
+2026-02-10T05:48:59.970Z [DEBUG] Failed to fetch Grove notice config: AxiosError: timeout of 3000ms exceeded
+2026-02-10T05:49:00.457Z [DEBUG] Writing to temp file: /Users/araki/.claude.json.tmp.75220.1770702540457
+2026-02-10T05:49:00.457Z [DEBUG] Preserving file permissions: 100600
+2026-02-10T05:49:00.457Z [DEBUG] Temp file written successfully, size: 75262 bytes
+2026-02-10T05:49:00.457Z [DEBUG] Applied original permissions to temp file
+2026-02-10T05:49:00.457Z [DEBUG] Renaming /Users/araki/.claude.json.tmp.75220.1770702540457 to /Users/araki/.claude.json
+2026-02-10T05:49:00.458Z [DEBUG] File /Users/araki/.claude.json written atomically
+2026-02-10T05:49:00.687Z [DEBUG] [STARTUP] showSetupScreens() completed in 3749ms
+2026-02-10T05:49:00.687Z [DEBUG] [LSP MANAGER] initializeLspServerManager() called
+2026-02-10T05:49:00.687Z [DEBUG] [LSP MANAGER] Created manager instance, state=pending
+2026-02-10T05:49:00.687Z [DEBUG] [LSP MANAGER] Starting async initialization (generation 1)
+2026-02-10T05:49:00.687Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-10T05:49:00.687Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-10T05:49:00.687Z [DEBUG] Passes: Using fresh cached eligibility data
+2026-02-10T05:49:00.689Z [DEBUG] Total LSP servers loaded: 0
+2026-02-10T05:49:00.690Z [DEBUG] [STARTUP] MCP configs loaded in 3777ms
+2026-02-10T05:49:00.693Z [DEBUG] Creating installed_plugins.json from settings.json files
+2026-02-10T05:49:00.695Z [DEBUG] [Reconnection] computeInitialTeamContext: No teammate context set (not a teammate)
+2026-02-10T05:49:00.697Z [DEBUG] Writing to temp file: /Users/araki/.claude.json.tmp.75220.1770702540697
+2026-02-10T05:49:00.697Z [DEBUG] Preserving file permissions: 100600
+2026-02-10T05:49:00.697Z [DEBUG] Temp file written successfully, size: 75262 bytes
+2026-02-10T05:49:00.697Z [DEBUG] Applied original permissions to temp file
+2026-02-10T05:49:00.697Z [DEBUG] Renaming /Users/araki/.claude.json.tmp.75220.1770702540697 to /Users/araki/.claude.json
+2026-02-10T05:49:00.697Z [DEBUG] File /Users/araki/.claude.json written atomically
+2026-02-10T05:49:00.698Z [DEBUG] [LSP SERVER MANAGER] getAllLspServers returned 0 server(s)
+2026-02-10T05:49:00.698Z [DEBUG] LSP manager initialized with 0 servers
+2026-02-10T05:49:00.698Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-10T05:49:00.699Z [DEBUG] Getting matching hook commands for SessionStart with query: startup
+2026-02-10T05:49:00.699Z [DEBUG] Found 0 hook matchers in settings
+2026-02-10T05:49:00.699Z [DEBUG] Matched 0 unique hooks for query "startup" (0 before deduplication)
+2026-02-10T05:49:00.700Z [DEBUG] LSP server manager initialized successfully
+2026-02-10T05:49:00.700Z [DEBUG] LSP notification handlers registered successfully for all 0 server(s)
+2026-02-10T05:49:00.700Z [DEBUG] Plugin pyright-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:00.702Z [DEBUG] [render] initLayout starting
+2026-02-10T05:49:00.702Z [DEBUG] Plugin gopls-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:00.703Z [DEBUG] [render] initLayout complete
+2026-02-10T05:49:00.709Z [DEBUG] [keybindings] KeybindingSetup initialized with 100 bindings, 0 warnings
+2026-02-10T05:49:00.734Z [DEBUG] Detected Homebrew cask installation: /opt/homebrew/Caskroom/claude-code/2.1.37/claude
+2026-02-10T05:49:00.735Z [DEBUG] [REPL:mount] REPL mounted, disabled=false
+2026-02-10T05:49:00.735Z [DEBUG] Detected Homebrew cask installation: /opt/homebrew/Caskroom/claude-code/2.1.37/claude
+2026-02-10T05:49:00.735Z [DEBUG] Official marketplace auto-install skipped: already_attempted
+2026-02-10T05:49:00.735Z [DEBUG] performStartupChecks called
+2026-02-10T05:49:00.735Z [DEBUG] Starting background plugin installations
+2026-02-10T05:49:00.735Z [DEBUG] performBackgroundPluginInstallations called
+2026-02-10T05:49:00.736Z [DEBUG] [render] first ink render: 4093ms since process start
+2026-02-10T05:49:00.736Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:00.736Z [DEBUG] AutoUpdaterWrapper: Installation type: package-manager
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: pyright-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: gopls-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: rust-analyzer-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: example-skills@anthropic-agent-skills - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: lua-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: analysis@m3ai-claude-plugins - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: gokart@m3ai-claude-plugins - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: pyright-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: gopls-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: rust-analyzer-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: example-skills@anthropic-agent-skills - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: lua-lsp@claude-plugins-official - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: analysis@m3ai-claude-plugins - error type: plugin-not-found
+2026-02-10T05:49:00.736Z [DEBUG] Plugin not available for MCP: gokart@m3ai-claude-plugins - error type: plugin-not-found
+2026-02-10T05:49:03.367Z [DEBUG] installed_plugins.json doesn't exist, returning empty V2 object
+2026-02-10T05:49:03.367Z [DEBUG] Watching for changes in setting files /Users/araki/.claude/settings.json...
+2026-02-10T05:49:03.368Z [DEBUG] [claudeai-mcp] Checking gate (cached)...
+2026-02-10T05:49:03.368Z [DEBUG] [claudeai-mcp] Gate returned: false
+2026-02-10T05:49:03.368Z [DEBUG] [claudeai-mcp] Disabled via gate
+2026-02-10T05:49:03.368Z [DEBUG] Plugin example-skills@anthropic-agent-skills not found in any marketplace, skipping
+2026-02-10T05:49:03.368Z [DEBUG] Found 7 enabled plugins
+2026-02-10T05:49:03.368Z [DEBUG] Creating installed_plugins.json from settings.json files
+2026-02-10T05:49:03.368Z [DEBUG] Found 0 installed plugins (V2 format)
+2026-02-10T05:49:03.369Z [DEBUG] Loaded plugins - Enabled: 0, Disabled: 0, Commands: 0, Agents: 0, Errors: 7
+2026-02-10T05:49:03.369Z [DEBUG] Found 7 missing plugins (not installed): pyright-lsp@claude-plugins-official, gopls-lsp@claude-plugins-official, rust-analyzer-lsp@claude-plugins-official, example-skills@anthropic-agent-skills, lua-lsp@claude-plugins-official, analysis@m3ai-claude-plugins, gokart@m3ai-claude-plugins
+2026-02-10T05:49:03.369Z [DEBUG] Cannot install 7 plugins because their marketplaces are not installed or configured: claude-plugins-official, anthropic-agent-skills, m3ai-claude-plugins
+2026-02-10T05:49:03.369Z [DEBUG] Uninstallable plugins: pyright-lsp@claude-plugins-official, gopls-lsp@claude-plugins-official, rust-analyzer-lsp@claude-plugins-official, example-skills@anthropic-agent-skills, lua-lsp@claude-plugins-official, analysis@m3ai-claude-plugins, gokart@m3ai-claude-plugins
+2026-02-10T05:49:03.369Z [DEBUG] Setting installation status: 0 marketplaces, 0 installable plugins, 7 uninstallable plugins
+2026-02-10T05:49:03.369Z [DEBUG] Plugin lua-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:03.369Z [DEBUG] Plugin pyright-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:03.369Z [DEBUG] Plugin analysis@m3ai-claude-plugins not found in any marketplace, skipping
+2026-02-10T05:49:03.369Z [DEBUG] Plugin gopls-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:03.369Z [DEBUG] Plugin gokart@m3ai-claude-plugins not found in any marketplace, skipping
+2026-02-10T05:49:03.369Z [DEBUG] Saved 0 installed plugins to /Users/araki/.claude/plugins/installed_plugins.json
+2026-02-10T05:49:03.369Z [DEBUG] Sync completed: 0 added, 0 updated in installed_plugins.json
+2026-02-10T05:49:03.369Z [DEBUG] Plugin rust-analyzer-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:03.369Z [DEBUG] Initialized versioned plugins system with 0 plugins
+2026-02-10T05:49:03.370Z [DEBUG] Plugin example-skills@anthropic-agent-skills not found in any marketplace, skipping
+2026-02-10T05:49:03.370Z [DEBUG] Plugin lua-lsp@claude-plugins-official not found in any marketplace, skipping
+2026-02-10T05:49:03.370Z [DEBUG] Plugin analysis@m3ai-claude-plugins not found in any marketplace, skipping
+2026-02-10T05:49:03.370Z [DEBUG] Plugin gokart@m3ai-claude-plugins not found in any marketplace, skipping
+2026-02-10T05:49:03.370Z [DEBUG] Saved 0 installed plugins to /Users/araki/.claude/plugins/installed_plugins.json
+2026-02-10T05:49:03.370Z [DEBUG] Sync completed: 0 added, 0 updated in installed_plugins.json
+2026-02-10T05:49:03.371Z [DEBUG] Org penguin mode: disabled (extra_usage_disabled)
+2026-02-10T05:49:03.373Z [DEBUG] Writing to temp file: /Users/araki/.claude.json.tmp.75220.1770702543373
+2026-02-10T05:49:03.373Z [DEBUG] Preserving file permissions: 100600
+2026-02-10T05:49:03.373Z [DEBUG] Temp file written successfully, size: 75262 bytes
+2026-02-10T05:49:03.373Z [DEBUG] Applied original permissions to temp file
+2026-02-10T05:49:03.373Z [DEBUG] Renaming /Users/araki/.claude.json.tmp.75220.1770702543373 to /Users/araki/.claude.json
+2026-02-10T05:49:03.373Z [DEBUG] File /Users/araki/.claude.json written atomically
+2026-02-10T05:49:03.373Z [DEBUG] Watching for changes in skill/command directories: /Users/araki/.claude/skills, /Users/araki/.claude/commands...
+2026-02-10T05:49:03.381Z [DEBUG] Detected Homebrew cask installation: /opt/homebrew/Caskroom/claude-code/2.1.37/claude
+2026-02-10T05:49:03.381Z [DEBUG] Plugin installation status: 0 failed marketplaces, 7 failed plugins
+2026-02-10T05:49:03.381Z [DEBUG] Adding notification for 7 failed installations
+2026-02-10T05:49:03.386Z [DEBUG] rg error (signal=undefined, code=ABORT_ERR, stderr: ), 0 results
+2026-02-10T05:49:03.386Z [ERROR] AbortError: AbortError: The operation was aborted.
+    at unknown
+    at abortChildProcess (node:child_process:935:42)
+    at onAbortListener2 (node:child_process:35:24)
+    at abort (unknown)
+    at <anonymous> (/$bunfs/root/claude:3440:209)
+2026-02-10T05:49:03.387Z [ERROR] RipgrepTimeoutError: RipgrepTimeoutError: Ripgrep search timed out after 20 seconds. The search may have matched files but did not complete in time. Try searching a more specific path or pattern.
+    at D (/$bunfs/root/claude:66:189)
+    at <anonymous> (/$bunfs/root/claude:66:403)
+    at exitHandler (node:child_process:109:27)
+    at errorHandler (node:child_process:118:16)
+    at emitError (node:events:43:23)
+    at abortChildProcess (node:child_process:935:17)
+    at onAbortListener2 (node:child_process:35:24)
+    at abort (unknown)
+    at <anonymous> (/$bunfs/root/claude:3440:209)
+2026-02-10T05:49:03.394Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-10T05:49:03.394Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-10T05:49:03.394Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-10T05:49:03.418Z [DEBUG] Tool search disabled for model 'claude-haiku-4-5-20251001': model does not support tool_reference blocks. This feature is only available on Claude Sonnet 4+, Opus 4+, and newer models.
+2026-02-10T05:49:03.418Z [DEBUG] attribution header x-anthropic-billing-header: cc_version=2.1.37.981; cc_entrypoint=cli; cch=00000;
+2026-02-10T05:49:03.419Z [DEBUG] [API:request] Creating client, ANTHROPIC_CUSTOM_HEADERS present: false, has Authorization header: false
+2026-02-10T05:49:03.419Z [DEBUG] [API:auth] OAuth token check starting
+2026-02-10T05:49:03.419Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-10T05:49:03.419Z [DEBUG] [API:auth] OAuth token check complete
+2026-02-10T05:49:03.419Z [DEBUG] Fast mode unavailable: Fast mode requires extra usage billing · /extra-usage to enable
+2026-02-10T05:49:03.638Z [DEBUG] Ripgrep first use test: PASSED (mode=builtin, path=/opt/homebrew/Caskroom/claude-code/2.1.37/claude)
+2026-02-10T05:49:03.786Z [DEBUG] PackageManagerAutoUpdater: Update available 2.1.37 -> 2.1.38
+2026-02-10T05:49:04.318Z [DEBUG] Stream started - received first chunk
+2026-02-10T05:49:05.007Z [DEBUG] Writing to temp file: /Users/araki/.claude/todos/7e45e407-6577-4b15-9d5c-79acd01a9dd4-agent-7e45e407-6577-4b15-9d5c-79acd01a9dd4.json.tmp.75220.1770702545007
+2026-02-10T05:49:05.008Z [DEBUG] Temp file written successfully, size: 2 bytes
+2026-02-10T05:49:05.008Z [DEBUG] Renaming /Users/araki/.claude/todos/7e45e407-6577-4b15-9d5c-79acd01a9dd4-agent-7e45e407-6577-4b15-9d5c-79acd01a9dd4.json.tmp.75220.1770702545007 to /Users/araki/.claude/todos/7e45e407-6577-4b15-9d5c-79acd01a9dd4-agent-7e45e407-6577-4b15-9d5c-79acd01a9dd4.json
+2026-02-10T05:49:05.008Z [DEBUG] File /Users/araki/.claude/todos/7e45e407-6577-4b15-9d5c-79acd01a9dd4-agent-7e45e407-6577-4b15-9d5c-79acd01a9dd4.json written atomically
+2026-02-10T05:49:09.812Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-02-10T05:49:09.837Z [DEBUG] Detected Homebrew cask installation: /opt/homebrew/Caskroom/claude-code/2.1.37/claude
+2026-02-10T05:49:09.839Z [DEBUG] Started caffeinate to prevent sleep
+2026-02-10T05:49:09.842Z [DEBUG] AutoUpdaterWrapper: Installation type: package-manager
+2026-02-10T05:49:09.850Z [DEBUG] Writing to temp file: /Users/araki/.claude.json.tmp.75220.1770702549850
+2026-02-10T05:49:09.850Z [DEBUG] Preserving file permissions: 100600
+2026-02-10T05:49:09.851Z [DEBUG] Temp file written successfully, size: 75262 bytes
+2026-02-10T05:49:09.851Z [DEBUG] Applied original permissions to temp file
+2026-02-10T05:49:09.851Z [DEBUG] Renaming /Users/araki/.claude.json.tmp.75220.1770702549850 to /Users/araki/.claude.json
+2026-02-10T05:49:09.851Z [DEBUG] File /Users/araki/.claude.json written atomically
+2026-02-10T05:49:09.854Z [DEBUG] Writing to temp file: /Users/araki/.claude.json.tmp.75220.1770702549854
+2026-02-10T05:49:09.854Z [DEBUG] Preserving file permissions: 100600
+2026-02-10T05:49:09.854Z [DEBUG] Temp file written successfully, size: 75262 bytes
+2026-02-10T05:49:09.854Z [DEBUG] Applied original permissions to temp file
+2026-02-10T05:49:09.854Z [DEBUG] Renaming /Users/araki/.claude.json.tmp.75220.1770702549854 to /Users/araki/.claude.json
+2026-02-10T05:49:09.854Z [DEBUG] File /Users/araki/.claude.json written atomically
+2026-02-10T05:49:09.855Z [DEBUG] [useDeferredValue] Messages deferred by 2 (0→2)
+2026-02-10T05:49:09.862Z [DEBUG] Stopped caffeinate, allowing sleep
+2026-02-10T05:49:10.780Z [DEBUG] PackageManagerAutoUpdater: Update available 2.1.37 -> 2.1.38
+2026-02-10T05:49:11.162Z [DEBUG] Getting matching hook commands for SessionEnd with query: prompt_input_exit
+2026-02-10T05:49:11.162Z [DEBUG] Found 0 hook matchers in settings
+2026-02-10T05:49:11.162Z [DEBUG] Matched 0 unique hooks for query "prompt_input_exit" (0 before deduplication)
+2026-02-10T05:49:11.168Z [DEBUG] LSP server manager shut down successfully

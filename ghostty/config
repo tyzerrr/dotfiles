@@ -5,8 +5,7 @@ window-padding-x = 20
 window-padding-y = 5
 window-padding-balance = true
 window-theme = ghostty
-background = 000000
-background-opacity = 0.9
+background-opacity = 0.95
 background-blur = false
 macos-titlebar-style = transparent
 confirm-close-surface=false
@@ -15,30 +14,7 @@ foreground = #f8f8f2
 keybind = shift+enter=text:\x1b\r
 
 
-# Default colors
-background = 011423
-foreground = cbe0f0
-
 # Cursor colors
 cursor-color = 47ff9c
 cursor-text = 011423
 
-# Normal colors
-palette = 0=#214969
-palette = 1=#e52e2e
-palette = 2=#44ffb1
-palette = 3=#ffe073
-palette = 4=#0fc5ed
-palette = 5=#a277ff
-palette = 6=#24eaf7
-palette = 7=#24eaf7
-
-# Bright colors
-palette = 8=#214969
-palette = 9=#e52e2e
-palette = 10=#44ffb1
-palette = 11=#ffe073
-palette = 12=#a277ff
-palette = 13=#a277ff
-palette = 14=#24eaf7
-palette = 15=#24eaf7
