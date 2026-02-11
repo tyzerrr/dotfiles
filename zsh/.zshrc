@@ -216,3 +216,6 @@ eval "$(zoxide init zsh)"
 git-change() {
     command git checkout $(git branch --all | fzf)
 }
+
+# bun completions
+[ -s "/Users/araki/.bun/_bun" ] && source "/Users/araki/.bun/_bun"

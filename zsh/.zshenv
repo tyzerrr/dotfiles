@@ -37,3 +37,6 @@ export DENO_INSTALL_ROOT="$DENO_INSTALL"
 
 ### sheldon ###
 export SHELDON_CONFIG_DIR="$ZDOTDIR"
+
+## bun ##
+export BUN_INSTALL="$HOME/.bun"

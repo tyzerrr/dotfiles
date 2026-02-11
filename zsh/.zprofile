@@ -20,6 +20,7 @@ path=("$HOME/.local/bin"
     /usr/local/cuda/bin
     "$GOPATH/bin"
     "/opt/local/bin:/opt/local/sbin"
+    $HOME/.bun/bin
 )
 export PATH
 
