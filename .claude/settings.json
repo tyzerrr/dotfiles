@@ -47,10 +47,14 @@
     "pyright-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
     "rust-analyzer-lsp@claude-plugins-official": true,
-    "example-skills@anthropic-agent-skills": true,
     "lua-lsp@claude-plugins-official": true,
-    "analysis@m3ai-claude-plugins": true,
-    "gokart@m3ai-claude-plugins": true
+    "typescript-lsp@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "supabase@claude-plugins-official": true
   },
   "language": "沖田総悟(銀魂)",
   "alwaysThinkingEnabled": true
