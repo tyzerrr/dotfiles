@@ -5,4 +5,5 @@ python = '3.13'
 go = 'latest'
 node = 'latest'
 deno = 'latest'
-claude = "latest"
+claude = 'latest'
+gcloud = 'latest'
