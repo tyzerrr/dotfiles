@@ -2,12 +2,12 @@ typeset -U path
 # path
 path=("$HOME/.local/bin"
     "${AQUA_ROOT_DIR}/bin"
+    "${MISE_ROOT_DIR}/shims"
     "/opt/homebrew/bin"
     "$NPM_CONFIG_PREFIX/bin"
     "$HOME/go/bin"
     "$DENO_INSTALL_ROOT/bin"
     "$DENO_INSTALL_ROOT/env"
-    "$JAVA_HOME/bin"
     "$HOME/.cargo/env"
     "/Applications/kitty.app/Contents/MacOS"
     "$HOME/apache-maven-3.9.2/bin"

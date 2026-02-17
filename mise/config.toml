@@ -1,0 +1,8 @@
+[tools]
+rust = 'latest'
+tmux = 'latest'
+python = '3.13'
+go = 'latest'
+node = 'latest'
+deno = 'latest'
+claude = "latest"

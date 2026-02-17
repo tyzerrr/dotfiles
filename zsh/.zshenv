@@ -43,3 +43,6 @@ export BUN_INSTALL="$HOME/.bun"
 ## set global config file path
 export AQUA_GLOBAL_CONFIG=$HOME/.config/aqua/aqua.yaml
 export AQUA_ROOT_DIR=${XDG_DATA_HOME}/aquaproj-aqua
+
+## mise ##
+export MISE_ROOT_DIR=${XDG_DATA_HOME}/mise
