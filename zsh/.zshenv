@@ -11,8 +11,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 
 export EDITOR=nvim
 export SAVEHIST=100000
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
-# export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 # export TERM="tmux-256color"
 export TERM="xterm-ghostty"
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
@@ -40,3 +38,8 @@ export SHELDON_CONFIG_DIR="$ZDOTDIR"
 
 ## bun ##
 export BUN_INSTALL="$HOME/.bun"
+
+## aqua ##
+## set global config file path
+export AQUA_GLOBAL_CONFIG=$HOME/.config/aqua/aqua.yaml
+export AQUA_ROOT_DIR=${XDG_DATA_HOME}/aquaproj-aqua
