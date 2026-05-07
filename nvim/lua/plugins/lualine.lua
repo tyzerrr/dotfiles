@@ -7,8 +7,9 @@ return {
         require("lualine").setup({
             options = {
                 icons_enabled = true,
-                theme = 'tokyonight', -- 使っているカラースキームに合わせる
+                -- theme = 'tokyonight', -- 使っているカラースキームに合わせる
                 -- theme = "rose-pine", -- 使っているカラースキームに合わせる
+                theme = "kanagawa",
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
                 -- ... 他の lualine オプション

@@ -1,8 +1,6 @@
 typeset -U path
 # path
 path=("$HOME/.local/bin"
-    "${AQUA_ROOT_DIR}/bin"
-    "${MISE_ROOT_DIR}/shims"
     "/opt/homebrew/bin"
     "$NPM_CONFIG_PREFIX/bin"
     "$HOME/go/bin"

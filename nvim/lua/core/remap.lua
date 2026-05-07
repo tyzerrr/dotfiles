@@ -25,7 +25,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 --save
 --conform.nvim, format plugin is automatically called, so unnecessary vim.lsp.format()
 vim.keymap.set("n", "<C-s>", function()
-	vim.cmd("w")
+    vim.cmd("w")
 end)
 
 --replace macro
@@ -56,11 +56,11 @@ vim.keymap.set("n", "<M-k>", "<cmd>cprev<cr>")
 
 -- text yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
-	pattern = "*",
-	group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+    pattern = "*",
+    group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
 
 -- for plugin dev, plenary-busted

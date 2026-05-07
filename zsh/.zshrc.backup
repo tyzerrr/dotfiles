@@ -149,9 +149,6 @@ zshaddhistory() {
     [[ ! "$line" =~ "^(cd|jj?|lazygit|la|ll|ls|rm|rmdir)($| )" ]]
 }
 
-# hooks
-eval "$(direnv hook zsh)"
-
 git-change() {
     command git checkout $(git branch --all | fzf)
 }
@@ -217,13 +214,45 @@ git-change() {
     command git checkout $(git branch --all | fzf)
 }
 
-# bun completions
-[ -s "/Users/araki/.bun/_bun" ] && source "/Users/araki/.bun/_bun"
+done-notify() {
+  local var=$(echo $history[$HISTCMD] | sed -e "s/$0//" -e 's/ *; *//' -e 's/ *&& *//')
+  osascript -e 'display notification "'"$var finished!"'" with title "Terminal"'
+}
 
 
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    unset __ETC_PROFILE_NIX_SOURCED
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
+shrinkpdf () {
+	if [ $# -lt 1 ]
+	then
+		echo "Usage: $0 file.pdf"
+		echo "  will shrink file.pdf"
+		return
+	fi
+	out=${1:r}-s.pdf 
+	gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.5 -dPDFSETTINGS=/printer -sOutputFile=${out} $1
+}
+
+
+# --- WezTerm Directory Reporting (Safe Mode) ---
+# OSC 7はディレクトリ情報の更新を通知する。tmuxにはPassThroughしてもらう必要がある。
+function wezterm_osc7_set_path() {
+  [[ -z "$TMUX" && -z "$WEZTERM_PANE" ]] && return
+
+  # urlエンコードなどが面倒なので、シンプルな文字列として構築
+  local url="file://${HOST}${PWD}"
+
+  # printfのエスケープ地獄を避けるため、シングルクォートで囲む
+  # \033 (Esc) は zsh の printf が解釈
+  if [[ -n "$TMUX" ]]; then
+    # tmux用: \033Ptmux; (開始) + \033\033]7;... (OSC7) + \033\\ (OSC7終了) + \033\\ (tmux終了)
+    printf '\033Ptmux;\033\033]7;%s\033\\\033\\' "$url" >&2
+  else
+    # 直通: \033]7;... (OSC7) + \033\\ (終了)
+    printf '\033]7;%s\033\\' "$url" >&2
+  fi
+}
+
+autoload -Uz add-zsh-hook
+# 二重登録防止のため一度削除してから登録
+add-zsh-hook -d precmd wezterm_osc7_set_path
+add-zsh-hook precmd wezterm_osc7_set_path
+# -----------------------------------------------
