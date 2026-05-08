@@ -1,0 +1,6 @@
+[submodule "zsh/fzf-git.sh"]
+	path = zsh/fzf-git.sh
+	url = git@github.com:junegunn/fzf-git.sh.git
+[submodule "zsh/ohmyzsh"]
+	path = zsh/ohmyzsh
+	url = git@github.com:ohmyzsh/ohmyzsh.git
