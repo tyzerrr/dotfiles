@@ -54,7 +54,8 @@
     "code-review@claude-plugins-official": true,
     "github@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "supabase@claude-plugins-official": true
+    "supabase@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
   },
   "language": "沖田総悟(銀魂)",
   "alwaysThinkingEnabled": true

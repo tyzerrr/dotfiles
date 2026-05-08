@@ -2,7 +2,6 @@ typeset -U path
 # path
 path=("$HOME/.local/bin"
     "/opt/homebrew/bin"
-    "$NPM_CONFIG_PREFIX/bin"
     "$HOME/go/bin"
     "$DENO_INSTALL_ROOT/bin"
     "$DENO_INSTALL_ROOT/env"

@@ -1,0 +1,28 @@
+# === Secrets / credentials ===
+gcloud/
+gh/
+github-copilot/
+wandb/
+
+# === Caches / runtime state ===
+cagent/
+crossnote/
+htop/
+jgit/
+lf/
+
+# === zsh runtime files ===
+zsh/.zcompdump*
+zsh/.zsh_history
+zsh/.zsh_sessions/
+zsh/.zlogin
+zsh/.zshrc.zwc
+
+# === 一般的な機密ファイルパターン ===
+*.db
+*credentials*
+*token*
+.env
+.env.*
+*.pem
+*.key
