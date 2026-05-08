@@ -55,6 +55,12 @@
     enableZshIntegration = true;
   };
 
+  #lsd
+  programs.lsd = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   home.packages = with pkgs; [
     nodejs_24
     tree-sitter
@@ -73,7 +79,6 @@
     kubernetes-helm
     minikube
     kustomize
-    lsd
     kind
     docker-client
     tflint
