@@ -17,6 +17,7 @@ zsh/.zsh_history
 zsh/.zsh_sessions/
 zsh/.zlogin
 zsh/.zshrc.zwc
+zsh/.zshrc.pre-oh-my-zsh-*
 
 # === 一般的な機密ファイルパターン ===
 *.db
