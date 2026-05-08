@@ -22,11 +22,15 @@ git clone --recurse-submodules git@github.com:tyzerrr/dotfiles.git ~/.config
 `--recurse-submodules` 付きなら次の Step 4 のsubmodule復元は不要。
 
 ### 2. Nix + home-manager で各種ツールをインストール
+初回は以下のコマンドでインストール。
 
 ```sh
 nix run home-manager/master -- switch --flake ~/.config/nix#${your-username}
 ```
-
+2回目以降は以下のコマンドでインストール。(home-managerが有効になる)
+```sh
+home-manager switch --flake ~/.config/nix#${your-username}
+```
 > `nix/home.nix` と `nix/flake.nix` の `username` / `homeDirectory` を自分の環境に合わせて書き換えてから実行してくれ。
 
 ### 3. Starship をインストール
@@ -55,4 +59,24 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH_CUSTOM/plugi
 
 ```sh
 source ~/.config/zsh/.zshrc
+```
+
+## FAQ
+1. Build, just check
+いきなり適用するのが怖い時は、buildだけして成果物を確認することができる。
+buildを実行したディレクトリに`result`というLinkが作られるので、そこで成果物を見る。
+```sh
+home-manager build
+```
+
+2. Rollback
+`home-manager switch`して、何か問題が起きたら以前のVersionにRollbackすることが可能。
+```sh
+home-manager switch --rollback
+```
+
+3. Generations
+`home-manager switch`による設定ファイルの世代を確認したい時は以下。
+```sh
+home-manager generations
 ```
