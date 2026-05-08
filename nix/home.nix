@@ -61,6 +61,42 @@
     enableZshIntegration = true;
   };
 
+  #git
+  programs.git = {
+    enable = true;
+
+    signing = {
+      key = "28D3AABC18605362F8975AFA7B5A5A50B3388C95";
+      signByDefault = true;
+    };
+
+    ignores = [
+      "**/.claude/settings.local.json"
+    ];
+
+    settings = {
+      user = {
+        name  = "Taichi Araki";
+        email = "t-b-araki@mercari.com";
+      };
+      init.defaultBranch = "main";
+      url."git@github.com:".insteadOf = "https://github.com/";
+      gpg.program = "${pkgs.gnupg}/bin/gpg";
+      # credential helper は programs.gh.enable が自動で追加するので不要
+    };
+  };
+
+  #gpg
+  programs.gpg.enable = true;
+
+  home.file.".gnupg/gpg-agent.conf".text = ''
+    pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
+  '';
+
+  home.file.".gnupg/common.conf".text = ''
+    use-keyboxd
+  '';
+
   home.packages = with pkgs; [
     nodejs_24
     tree-sitter
@@ -94,5 +130,6 @@
     rustc
     cargo
     yq-go
+    pinentry_mac
   ];
 }
