@@ -104,7 +104,6 @@ _fzf_comprun() {
   esac
 }
 
-export BAT_THEME="tokyonight_moon"
 eval "$(zoxide init zsh)"
 
 git-change() {

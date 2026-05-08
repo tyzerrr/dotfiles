@@ -1,8 +1,27 @@
 { pkgs, ... }:
 {
-  home.username = "araki";
-  home.homeDirectory = "/Users/araki";
+  home.username = "t-b-araki";
+  home.homeDirectory = "/Users/t-b-araki";
   home.stateVersion = "25.11";
+
+  # home-manager
+  programs.home-manager.enable = true;
+
+  # zoxide
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  # bat
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Catppuccin Mocha";
+      pager = "less -FR";
+    };
+  };
+
   home.packages = with pkgs; [
     nodejs_24
     tree-sitter
@@ -15,9 +34,7 @@
     fzf
     tmux
     ghq
-    bat
     eza
-    zoxide
     vim
     neovim
     awscli2
