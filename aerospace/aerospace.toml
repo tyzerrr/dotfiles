@@ -176,11 +176,11 @@ automatically-unhide-macos-hidden-apps = false
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
 
+# Ghostty - force tiling layout to prevent macOS native tab issues
+# See: https://github.com/nikitabobko/AeroSpace/issues/778
 [[on-window-detected]]
-if.app-id="com.mitchellh.ghostty"
-run= [
-  "layout floating",
-]
+if.app-id = 'com.mitchellh.ghostty'
+run = ['layout tiling']
 
 # Kindle
 [[on-window-detected]]
