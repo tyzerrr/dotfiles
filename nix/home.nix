@@ -43,5 +43,6 @@
     rustc
     cargo
     yq-go
+    direnv
   ];
 }
