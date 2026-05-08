@@ -4,22 +4,55 @@
   home.homeDirectory = "/Users/t-b-araki";
   home.stateVersion = "25.11";
 
-  # home-manager
+  #home-manager
   programs.home-manager.enable = true;
 
-  # zoxide
+  #zoxide
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
   };
 
-  # bat
+  #bat
   programs.bat = {
     enable = true;
     config = {
       theme = "Catppuccin Mocha";
       pager = "less -FR";
     };
+  };
+
+  #direnv
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
+  #fzf
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  #eza
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    icons = "always";
+    git = true;
+  };
+
+  #gh
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
+  };
+
+  #lazygit
+  programs.lazygit = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   home.packages = with pkgs; [
@@ -31,19 +64,15 @@
     go_1_26
     fd
     jq
-    fzf
     tmux
     ghq
-    eza
     vim
     neovim
     awscli2
-    gh
     golangci-lint
     kubernetes-helm
     minikube
     kustomize
-    lazygit
     lsd
     kind
     docker-client
@@ -60,6 +89,5 @@
     rustc
     cargo
     yq-go
-    direnv
   ];
 }
