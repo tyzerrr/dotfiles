@@ -97,6 +97,73 @@
     use-keyboxd
   '';
 
+  #tmux
+  programs.tmux = {
+    enable = true;
+    prefix = "C-g";
+    mouse = true;
+    keyMode = "vi";
+    terminal = "xterm-ghostty";
+    baseIndex = 1;
+    historyLimit = 10000;
+
+    extraConfig = ''
+      # set.tmux: HM オプション無いやつ
+      set -g renumber-windows on
+      set -g set-clipboard on
+      set -ag terminal-overrides ",xterm-ghostty:Tc"
+
+      # remap.tmux
+      bind-key c copy-mode
+
+      bind-key -T copy-mode-vi v send -X begin-selection
+      bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+
+      bind-key \\ split-window -h
+      bind-key - split-window -v
+
+      bind-key h select-pane -L
+      bind-key j select-pane -D
+      bind-key k select-pane -U
+      bind-key l select-pane -R
+
+      bind-key w new-window
+      bind-key s choose-window
+
+      bind-key 0 select-window -t :0
+      bind-key 1 select-window -t :1
+      bind-key 2 select-window -t :2
+      bind-key 3 select-window -t :3
+      bind-key 4 select-window -t :4
+      bind-key 5 select-window -t :5
+      bind-key 6 select-window -t :6
+      bind-key 7 select-window -t :7
+      bind-key 8 select-window -t :8
+      bind-key 9 select-window -t :9
+
+      bind-key d detach-client
+
+      # statusbar.tmux: Tokyo Night テーマ
+      set -g status-position bottom
+      set -g status-style "bg=#24283b,fg=#c0caf5"
+      set -g status-justify absolute-centre
+
+      set -g status-left-length 40
+      set -g status-left "#[fg=#7aa2f7,bold]session: #(~/.config/tmux/scripts/compress_path.sh '#{session_name}') "
+
+      set -g status-right ""
+
+      set -g window-status-format "#[fg=#565f89] #I:#W "
+      set -g window-status-current-format "#[fg=#7aa2f7,bold] #I:#W "
+      set -g window-status-separator ""
+
+      set -g pane-border-style "fg=#565f89"
+      set -g pane-active-border-style "fg=#7aa2f7"
+
+      set -g message-style "bg=default,fg=#c0caf5"
+    '';
+  };
+
   home.packages = with pkgs; [
     nodejs_24
     tree-sitter
@@ -106,7 +173,6 @@
     go_1_26
     fd
     jq
-    tmux
     ghq
     vim
     neovim
