@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
-  home.username = "t-b-araki";
-  home.homeDirectory = "/Users/t-b-araki";
+  home.username = "araki";
+  home.homeDirectory = "/Users/araki";
   home.stateVersion = "25.11";
 
   #home-manager
@@ -197,5 +197,7 @@
     cargo
     yq-go
     pinentry_mac
+    pandoc
+    supabase-cli
   ];
 }

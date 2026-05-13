@@ -22,7 +22,7 @@
         overlays = [ nix-claude-code.overlays.default ];
       };
     in {
-      homeConfigurations.t-b-araki = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.araki = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./home.nix ];
       };
