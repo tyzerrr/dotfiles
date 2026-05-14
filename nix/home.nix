@@ -190,7 +190,7 @@
     ssm-session-manager-plugin
     stylua
     deno
-    google-cloud-sdk
+    (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     python313
     claude-code
     rustc
