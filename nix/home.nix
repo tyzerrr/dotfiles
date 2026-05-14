@@ -199,5 +199,6 @@
     pinentry_mac
     pandoc
     supabase-cli
+    sketchybar
   ];
 }
