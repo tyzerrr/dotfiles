@@ -35,11 +35,11 @@ nix run home-manager/master -- switch --flake ~/.config/nix#t-b-araki
 2回目以降は以下のコマンドで適用。(home-managerが有効になる)
 
 ```sh
-home-manager switch --flake ~/.config/nix#araki --locked
-home-manager switch --flake ~/.config/nix#t-b-araki --locked
+home-manager switch --flake ~/.config/nix#araki --no-update-lock-file
+home-manager switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
 ```
 
-普段の適用では `--locked` を付ける。`flake.lock` の更新が必要な場合は失敗するので、PCごとに勝手なlock差分が生まれない。
+普段の適用では `--no-update-lock-file` を付ける。`flake.lock` の更新が必要な場合は失敗するので、PCごとに勝手なlock差分が生まれない。
 
 ### 3. Starship をインストール
 
@@ -92,47 +92,61 @@ home-manager switch --rollback
 home-manager generations
 ```
 
-### 4. Nix packageを追加する
-package追加時は、まず最新のmainを取り込んでから `nix/home.nix` の `home.packages` に追加する。
+### 4. Nix設定を更新する
+Nix設定を変更する時は、まず最新のmainを取り込んでから `nix/home.nix` や `nix/flake.nix` を編集する。
 
 ```sh
 cd ~/.config
-git pull --rebase
+git fetch
+git rebase origin/main
 ```
 
-追加後、まずは `flake.lock` を更新せずに適用する。
+変更後、まずは `flake.lock` を更新せずに適用する。
 
 ```sh
-home-manager switch --flake ~/.config/nix#araki --locked
-home-manager switch --flake ~/.config/nix#t-b-araki --locked
+home-manager switch --flake ~/.config/nix#araki --no-update-lock-file
+home-manager switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
 ```
 
-`--locked` で通る場合、追加したpackageは現在の `flake.lock` で固定されたnixpkgsに存在するので、基本的に `nix/home.nix` だけcommitする。
+`--no-update-lock-file` で通る場合、変更は現在の `flake.lock` で固定されたnixpkgsで評価できるので、基本的にNixの設定ファイルだけcommitする。
 
 ```sh
-git add nix/home.nix
-git commit -m "chore(nix): add <package>"
+git diff
+git add nix/home.nix nix/flake.nix
+git commit -m "chore(nix): update home-manager config"
 git push
 ```
 
-`--locked` でlock更新が必要なエラーになる場合だけ、明示的に `flake.lock` を更新する。
+`home-manager switch` で生成される以下のsymlinkはGit管理しない。
+
+```text
+bat/config
+direnv/lib/hm-nix-direnv.sh
+git/config
+tmux/tmux.conf
+```
+
+これらは `.gitignore` 済みなので、`git diff` にはNixの設定変更だけが出る。
+
+`--no-update-lock-file` でlock更新が必要なエラーになる場合だけ、明示的に `flake.lock` を更新する。
 
 ```sh
 cd ~/.config/nix
 nix flake update
-home-manager switch --flake .#araki --locked
-home-manager switch --flake .#t-b-araki --locked
+home-manager switch --flake .#araki --no-update-lock-file
+home-manager switch --flake .#t-b-araki --no-update-lock-file
 cd ..
 git add nix/home.nix nix/flake.lock
-git commit -m "chore(nix): add <package>"
+git commit -m "chore(nix): update flake lock"
 git push
 ```
 
-他のPCでは `flake.lock` を更新しない。変更を取り込んで、該当profileを `--locked` で適用する。
+他のPCでは `flake.lock` を更新しない。変更を取り込んで、該当profileを `--no-update-lock-file` で適用する。
 
 ```sh
 cd ~/.config
-git pull --rebase
-home-manager switch --flake ~/.config/nix#araki --locked
-home-manager switch --flake ~/.config/nix#t-b-araki --locked
+git fetch
+git rebase origin/main
+home-manager switch --flake ~/.config/nix#araki --no-update-lock-file
+home-manager switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
 ```

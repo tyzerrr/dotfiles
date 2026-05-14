@@ -11,6 +11,12 @@ htop/
 jgit/
 lf/
 
+# === Home Manager generated symlinks ===
+bat/config
+direnv/lib/hm-nix-direnv.sh
+git/config
+tmux/tmux.conf
+
 # === zsh runtime files ===
 zsh/.zcompdump*
 zsh/.zsh_history
