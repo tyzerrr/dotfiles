@@ -22,16 +22,24 @@ git clone --recurse-submodules git@github.com:tyzerrr/dotfiles.git ~/.config
 `--recurse-submodules` 付きなら次の Step 4 のsubmodule復元は不要。
 
 ### 2. Nix + home-manager で各種ツールをインストール
-初回は以下のコマンドでインストール。
+`araki` は personal、`t-b-araki` は work 用のprofile。
+どちらも同じHome Manager設定を使い、usernameとhomeDirectoryだけprofileごとに切り替える。
+
+初回は適用したいprofileを指定してインストール。
 
 ```sh
-nix run home-manager/master -- switch --flake ~/.config/nix#${your-username}
+nix run home-manager/master -- switch --flake ~/.config/nix#araki
+nix run home-manager/master -- switch --flake ~/.config/nix#t-b-araki
 ```
-2回目以降は以下のコマンドでインストール。(home-managerが有効になる)
+
+2回目以降は以下のコマンドで適用。(home-managerが有効になる)
+
 ```sh
-home-manager switch --flake ~/.config/nix#${your-username}
+home-manager switch --flake ~/.config/nix#araki --locked
+home-manager switch --flake ~/.config/nix#t-b-araki --locked
 ```
-> `nix/home.nix` と `nix/flake.nix` の `username` / `homeDirectory` を自分の環境に合わせて書き換えてから実行してくれ。
+
+普段の適用では `--locked` を付ける。`flake.lock` の更新が必要な場合は失敗するので、PCごとに勝手なlock差分が生まれない。
 
 ### 3. Starship をインストール
 
@@ -62,21 +70,69 @@ source ~/.config/zsh/.zshrc
 ```
 
 ## FAQ
-1. Build, just check
+### 1. Build, just check
 いきなり適用するのが怖い時は、buildだけして成果物を確認することができる。
 buildを実行したディレクトリに`result`というLinkが作られるので、そこで成果物を見る。
+
 ```sh
 home-manager build
 ```
 
-2. Rollback
+### 2. Rollback
 `home-manager switch`して、何か問題が起きたら以前のVersionにRollbackすることが可能。
+
 ```sh
 home-manager switch --rollback
 ```
 
-3. Generations
+### 3. Generations
 `home-manager switch`による設定ファイルの世代を確認したい時は以下。
+
 ```sh
 home-manager generations
+```
+
+### 4. Nix packageを追加する
+package追加時は、まず最新のmainを取り込んでから `nix/home.nix` の `home.packages` に追加する。
+
+```sh
+cd ~/.config
+git pull --rebase
+```
+
+追加後、まずは `flake.lock` を更新せずに適用する。
+
+```sh
+home-manager switch --flake ~/.config/nix#araki --locked
+home-manager switch --flake ~/.config/nix#t-b-araki --locked
+```
+
+`--locked` で通る場合、追加したpackageは現在の `flake.lock` で固定されたnixpkgsに存在するので、基本的に `nix/home.nix` だけcommitする。
+
+```sh
+git add nix/home.nix
+git commit -m "chore(nix): add <package>"
+git push
+```
+
+`--locked` でlock更新が必要なエラーになる場合だけ、明示的に `flake.lock` を更新する。
+
+```sh
+cd ~/.config/nix
+nix flake update
+home-manager switch --flake .#araki --locked
+home-manager switch --flake .#t-b-araki --locked
+cd ..
+git add nix/home.nix nix/flake.lock
+git commit -m "chore(nix): add <package>"
+git push
+```
+
+他のPCでは `flake.lock` を更新しない。変更を取り込んで、該当profileを `--locked` で適用する。
+
+```sh
+cd ~/.config
+git pull --rebase
+home-manager switch --flake ~/.config/nix#araki --locked
+home-manager switch --flake ~/.config/nix#t-b-araki --locked
 ```

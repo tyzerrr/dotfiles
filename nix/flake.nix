@@ -21,10 +21,16 @@
         config.allowUnfree = true;
         overlays = [ nix-claude-code.overlays.default ];
       };
-    in {
-      homeConfigurations.araki = home-manager.lib.homeManagerConfiguration {
+      mkHomeConfiguration = username: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = {
+          inherit username;
+          homeDirectory = "/Users/${username}";
+        };
         modules = [ ./home.nix ];
       };
+    in {
+      homeConfigurations.araki = mkHomeConfiguration "araki";
+      homeConfigurations.t-b-araki = mkHomeConfiguration "t-b-araki";
     };
 }
