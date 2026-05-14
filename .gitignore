@@ -33,3 +33,4 @@ zsh/.zshrc.pre-oh-my-zsh-*
 .env.*
 *.pem
 *.key
+merctl/*
