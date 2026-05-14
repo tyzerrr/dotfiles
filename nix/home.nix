@@ -200,5 +200,6 @@
     pandoc
     supabase-cli
     sketchybar
+    aerospace
   ];
 }
