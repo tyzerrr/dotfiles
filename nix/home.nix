@@ -202,5 +202,7 @@
     sketchybar
     aerospace
     buf
+    postgresql
+    mysql84
   ];
 }
