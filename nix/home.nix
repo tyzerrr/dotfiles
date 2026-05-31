@@ -201,5 +201,6 @@
     supabase-cli
     sketchybar
     aerospace
+    buf
   ];
 }
