@@ -1,7 +1,7 @@
-{ pkgs, username, ... }:
+{ username, ... }:
 {
-  # nix 自体の設定
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Nix 自体は Determinate Nix Installer に管理させる
+  nix.enable = false;
 
   # nix-darwin で homebrew / ユーザー固有オプションを使うために必須
   system.primaryUser = username;

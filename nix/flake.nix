@@ -29,6 +29,23 @@
           # (移動済みの test ファイルへの substituteInPlace が失敗) ため check を無効化
           (final: prev: {
             kubernetes-helm = prev.kubernetes-helm.overrideAttrs (_: { doCheck = false; });
+            tmux-sessionizer = prev.buildGoModule {
+              pname = "tmux-sessionizer";
+              version = "0.0.8";
+
+              src = prev.fetchFromGitHub {
+                owner = "tyzerrr";
+                repo = "tmux-sessionizer";
+                rev = "v0.0.8";
+                sha256 = "0pkskqbsnma8c262kys7r5ll9ivrwjp4iw08iwykqrrizqzzdlcd";
+              };
+
+              vendorHash = "sha256-bMOY0HQqvLg7vnGcUUA+sfK2lzbEin4Cp7kY93i9Jhw=";
+
+              postInstall = ''
+                mv $out/bin/my-tmux-sessionizer $out/bin/tmux-sessionizer
+              '';
+            };
           })
         ];
       };

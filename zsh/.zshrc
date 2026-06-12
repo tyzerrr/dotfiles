@@ -4,6 +4,9 @@ if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
   . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 fi
 # End Nix
+
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+
 # NOTE: This is the most important to use C-e in tmux env
 bindkey -e
 bindkey -s ^k "tmux-sessionizer\n"
@@ -73,7 +76,7 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source ${XDG_CONFIG_HOME}/zsh/fzf-git.sh/fzf-git.sh
+source "${XDG_CONFIG_HOME}/zsh/fzf-git.sh/fzf-git.sh"
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"

@@ -6,10 +6,14 @@
 
 ### Nix のインストール
 
+Determinate Nix Installer で Nix を入れる。
+
 ```sh
-sh <(curl -L https://nixos.org/nix/install)
-mkdir -p ~/.config/nix && echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
+
+この repository の nix-darwin 設定では `nix.enable = false` にしている。
+Nix daemon や `/etc/nix/nix.conf` は Determinate Nix Installer に管理させ、nix-darwin では管理しない。
 
 ## Setup
 
@@ -43,7 +47,8 @@ make switch PROFILE=t-b-araki
 ```
 
 `make switch` は以下を冪等に行う:
-- 初回のみ nix-darwin が管理する `/etc` ファイルを `*.before-nix-darwin` に退避 (`/etc/nix/nix.conf`, `/etc/bashrc`, `/etc/zshrc`)
+- Determinate Nix Installer が入っていることを確認
+- 初回のみ nix-darwin が管理する shell 初期化ファイルを `*.before-nix-darwin` に退避 (`/etc/bashrc`, `/etc/zshrc`)
 - `darwin-rebuild` が PATH に無ければ `nix run` 経由で実行 (初回)
 - あれば `darwin-rebuild switch` で適用 (2回目以降)
 
@@ -62,7 +67,6 @@ make switch UPDATE_LOCK=1   # flake.lock の更新を許可して適用
 初回:
 
 ```sh
-sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
 sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix#t-b-araki
 ```
 

@@ -16,8 +16,8 @@ FLAKE := $(NIX_DIR)
 PROFILE ?= $(USER)
 # Makefile では # がコメント開始になるため \# でエスケープ
 FLAKE_REF := $(FLAKE)\#$(PROFILE)
-# sudo nix run (初回 bootstrap) は root の nix 設定を使う。
-# /etc/nix/nix.conf 退避後は experimental-features が無いので明示的に渡す。
+# 初回 bootstrap でも確実に flakes を使うため明示する。
+# Determinate Nix では通常不要だが、付けても問題ない。
 NIX_EXPERIMENTAL := --extra-experimental-features 'nix-command flakes'
 
 DARWIN_REBUILD := $(shell command -v darwin-rebuild 2>/dev/null)
@@ -32,7 +32,7 @@ ifeq ($(UPDATE_LOCK),1)
   LOCK_FLAGS :=
 endif
 
-.PHONY: help switch build rollback generations prepare prepare-system
+.PHONY: help switch build rollback generations prepare prepare-system check-determinate
 
 help:
 	@echo "Usage:"
@@ -45,10 +45,18 @@ help:
 	@echo "  PROFILE=<name>    darwinConfigurations name (default: \$$USER)"
 	@echo "  UPDATE_LOCK=1     Allow flake.lock updates during switch/build"
 
-# 初回のみ: nix-darwin が管理する /etc ファイルを退避 (冪等)
+check-determinate:
+	@if [ ! -f /nix/receipt.json ] && [ ! -f /etc/nix/nix.custom.conf ]; then \
+		echo "error: Determinate Nix Installer markers were not found."; \
+		echo "Install Determinate Nix first: https://install.determinate.systems/nix"; \
+		exit 1; \
+	fi
+
+# 初回のみ: nix-darwin が管理する shell 初期化ファイルを退避 (冪等)
+# /etc/nix は Determinate Nix Installer に管理させるため触らない。
 # バックアップ (*.before-nix-darwin) が既にあればスキップ
 prepare prepare-system:
-	@for f in /etc/nix/nix.conf /etc/bashrc /etc/zshrc; do \
+	@for f in /etc/bashrc /etc/zshrc; do \
 		backup="$$f.before-nix-darwin"; \
 		if [ -f "$$backup" ]; then \
 			echo "prepare-system: already migrated ($$backup exists)"; \
@@ -58,7 +66,7 @@ prepare prepare-system:
 		fi; \
 	done
 
-switch: prepare-system
+switch: check-determinate prepare-system
 	@echo "switch: profile=$(PROFILE) flake=$(FLAKE_REF)"
 ifeq ($(DARWIN_REBUILD),)
 	sudo env HOME="$(HOME)" USER="$(USER)" $(REBUILD) switch --flake "$(FLAKE_REF)" $(LOCK_FLAGS)
