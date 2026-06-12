@@ -165,7 +165,6 @@
   };
 
   home.packages = with pkgs; [
-    git
     nodejs_24
     tree-sitter
     pnpm
