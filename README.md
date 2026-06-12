@@ -21,25 +21,60 @@ git clone --recurse-submodules git@github.com:tyzerrr/dotfiles.git ~/.config
 
 `--recurse-submodules` 付きなら次の Step 4 のsubmodule復元は不要。
 
-### 2. Nix + home-manager で各種ツールをインストール
+### 2. Nix (nix-darwin + home-manager) で各種ツールをインストール
 `araki` は personal、`t-b-araki` は work 用のprofile。
-どちらも同じHome Manager設定を使い、usernameとhomeDirectoryだけprofileごとに切り替える。
+どちらも同じ home-manager 設定を使い、usernameとhomeDirectoryだけprofileごとに切り替える。
+home-manager は nix-darwin に統合してあるので、`darwin-rebuild switch` 一発でシステム設定 (Homebrew cask 等) と home-manager の両方が適用される。**別途 `home-manager switch` は不要。**
 
-初回は適用したいprofileを指定してインストール。
+> macOS の GUI アプリ等 (例: `ghostty`) は nixpkgs が darwin 非対応なため、`nix/darwin.nix` の Homebrew cask で管理している。Homebrew 本体は事前に入れておくこと: <https://brew.sh>
 
-```sh
-nix run home-manager/master -- switch --flake ~/.config/nix#araki
-nix run home-manager/master -- switch --flake ~/.config/nix#t-b-araki
-```
-
-2回目以降は以下のコマンドで適用。(home-managerが有効になる)
+初回・2回目以降とも、リポジトリ直下で `make switch` を実行する。profile はデフォルトで現在の OS ユーザー名 (`$USER`) が使われる。
 
 ```sh
-home-manager switch --flake ~/.config/nix#araki --no-update-lock-file
-home-manager switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
+cd ~/.config
+make switch
 ```
 
-普段の適用では `--no-update-lock-file` を付ける。`flake.lock` の更新が必要な場合は失敗するので、PCごとに勝手なlock差分が生まれない。
+別ユーザー用 profile を指定する場合:
+
+```sh
+make switch PROFILE=araki
+make switch PROFILE=t-b-araki
+```
+
+`make switch` は以下を冪等に行う:
+- 初回のみ nix-darwin が管理する `/etc` ファイルを `*.before-nix-darwin` に退避 (`/etc/nix/nix.conf`, `/etc/bashrc`, `/etc/zshrc`)
+- `darwin-rebuild` が PATH に無ければ `nix run` 経由で実行 (初回)
+- あれば `darwin-rebuild switch` で適用 (2回目以降)
+
+その他の Make ターゲット:
+
+```sh
+make build                  # 適用せずビルドのみ
+make rollback               # 前の世代に戻す
+make generations            # 世代一覧
+make switch UPDATE_LOCK=1   # flake.lock の更新を許可して適用
+```
+
+<details>
+<summary>make を使わない場合の手動コマンド</summary>
+
+初回:
+
+```sh
+sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.before-nix-darwin
+sudo nix run nix-darwin/master#darwin-rebuild -- switch --flake ~/.config/nix#t-b-araki
+```
+
+2回目以降:
+
+```sh
+sudo darwin-rebuild switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
+```
+
+</details>
+
+普段の適用では `--no-update-lock-file` を付ける (`make switch` はデフォルトで付与)。`flake.lock` の更新が必要な場合は失敗するので、PCごとに勝手なlock差分が生まれない。
 
 ### 3. Starship をインストール
 
@@ -75,21 +110,22 @@ source ~/.config/zsh/.zshrc
 buildを実行したディレクトリに`result`というLinkが作られるので、そこで成果物を見る。
 
 ```sh
-home-manager build
+cd ~/.config
+make build
 ```
 
 ### 2. Rollback
-`home-manager switch`して、何か問題が起きたら以前のVersionにRollbackすることが可能。
+`make switch` して、何か問題が起きたら以前のVersionにRollbackすることが可能。
 
 ```sh
-home-manager switch --rollback
+make rollback
 ```
 
 ### 3. Generations
-`home-manager switch`による設定ファイルの世代を確認したい時は以下。
+`make switch` による設定ファイルの世代を確認したい時は以下。
 
 ```sh
-home-manager generations
+make generations
 ```
 
 ### 4. Nix設定を更新する
@@ -104,16 +140,16 @@ git rebase origin/main
 変更後、まずは `flake.lock` を更新せずに適用する。
 
 ```sh
-home-manager switch --flake ~/.config/nix#araki --no-update-lock-file
-home-manager switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
+cd ~/.config
+make switch
 ```
 
 `--no-update-lock-file` で通る場合、変更は現在の `flake.lock` で固定されたnixpkgsで評価できるので、基本的にNixの設定ファイルだけcommitする。
 
 ```sh
 git diff
-git add nix/home.nix nix/flake.nix
-git commit -m "chore(nix): update home-manager config"
+git add nix/home.nix nix/flake.nix nix/darwin.nix
+git commit -m "chore(nix): update nix config"
 git push
 ```
 
@@ -133,9 +169,8 @@ tmux/tmux.conf
 ```sh
 cd ~/.config/nix
 nix flake update
-home-manager switch --flake .#araki --no-update-lock-file
-home-manager switch --flake .#t-b-araki --no-update-lock-file
 cd ..
+make switch UPDATE_LOCK=1
 git add nix/home.nix nix/flake.lock
 git commit -m "chore(nix): update flake lock"
 git push
@@ -147,6 +182,5 @@ git push
 cd ~/.config
 git fetch
 git rebase origin/main
-home-manager switch --flake ~/.config/nix#araki --no-update-lock-file
-home-manager switch --flake ~/.config/nix#t-b-araki --no-update-lock-file
+make switch
 ```
