@@ -204,5 +204,6 @@
     buf
     postgresql
     mysql84
+    ghostty
   ];
 }
