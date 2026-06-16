@@ -4,6 +4,19 @@ require("wezDecrementOpacity")
 require("wezToggleOpacity")
 local module = {}
 
+local karabinerMap = {
+	["1"] = "*",
+	["2"] = "[",
+	["3"] = "{",
+	["4"] = "(",
+	["5"] = "#",
+	["6"] = "^",
+	["7"] = ")",
+	["8"] = "}",
+	["9"] = "]",
+	["0"] = "$",
+}
+
 function module.apply_to_config(config)
 	config.disable_default_key_bindings = true
 	config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 5000 }
@@ -104,7 +117,7 @@ function module.apply_to_config(config)
 	}
 	for i = 1, 9 do
 		table.insert(config.keys, {
-			key = tostring(i),
+			key = karabinerMap[tostring(i)],
 			mods = "LEADER",
 			action = wezterm.action.ActivateTab(i - 1),
 		})
