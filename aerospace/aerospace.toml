@@ -69,7 +69,7 @@ automatically-unhide-macos-hidden-apps = false
     inner.vertical =   10
     outer.left =       10
     outer.bottom =     10
-    outer.top =        48
+    outer.top =        10
     outer.right =      10
 
 # 'main' binding mode declaration
@@ -182,19 +182,14 @@ automatically-unhide-macos-hidden-apps = false
 if.app-id = 'com.mitchellh.ghostty'
 run = ['layout tiling']
 
-# Kindle
-[[on-window-detected]]
-if.app-id='com.amazon.Lassen'
-run = 'move-node-to-workspace 1'
-
 # Slack
 [[on-window-detected]]
 if.app-id='com.tinyspeck.slackmacgap'
 run = 'move-node-to-workspace 2'
 
-# Dia browser (Main browser)
+# Chrome browser (Main browser)
 [[on-window-detected]]
-if.app-id='company.thebrowser.dia'
+if.app-id='com.google.Chrome'
 run = 'move-node-to-workspace 3'
 
 # Ghostty (Main workspace)
@@ -202,30 +197,20 @@ run = 'move-node-to-workspace 3'
 if.app-id='com.mitchellh.ghostty'
 run = 'move-node-to-workspace 4'
 
-# Discord
+# Goland
 [[on-window-detected]]
-if.app-id='com.hnc.Discord'
+if.app-id='com.jetbrains.goland'
 run = 'move-node-to-workspace 5'
 
-# Google Chrome (Only for AI)
+# Claude desktop
 [[on-window-detected]]
-if.app-id='com.google.Chrome'
-run = 'move-node-to-workspace 6'
-
-# Cursor
-[[on-window-detected]]
-if.app-id='com.todesktop.230313mzl4w4u92'
+if.app-id='com.anthropic.claudefordesktop'
 run = 'move-node-to-workspace 7'
-
-# Notion Calendar
-[[on-window-detected]]
-if.app-id='com.cron.electron'
-run = 'move-node-to-workspace 8'
 
 # Notion
 [[on-window-detected]]
 if.app-id='notion.id'
-run = 'move-node-to-workspace 9'
+run = 'move-node-to-workspace 8'
 
 [workspace-to-monitor-force-assignment]
 1 = 'main'
