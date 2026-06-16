@@ -6,7 +6,7 @@ local wezOpacity = require("wezOpacity")
 local wezInit = require("wezInit")
 local wezCursor = require("wezCursor")
 local wezTabBar = require("wezTabBar")
-require("wezCopyMode")
+local wezCopyMode = require("wezCopyMode")
 -- require("wezFullScreen")
 
 local config = {}
@@ -18,5 +18,6 @@ wezOpacity.apply_to_config(config)
 wezFontSize.apply_to_config(config)
 wezTabBar.apply_to_config(config)
 wezCursor.apply_to_config(config)
+config.key_tables = wezCopyMode.key_tables
 
 return config
