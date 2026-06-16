@@ -104,8 +104,13 @@ git-change() {
 }
 
 dev-root() {
-  local dev-root
-  selected="$(ls -d ${HOME}/dev/*/ | sed "s|^${HOME}|~|" | fzf)" || return
+  local selected
+  selected="$(
+    {
+      ls -d ${HOME}/dev/*/ 2>/dev/null
+      find ${HOME}/worktrees -type f -name '.git' 2>/dev/null | sed 's|/\.git$|/|'
+    } | sed "s|^${HOME}|~|" | fzf
+  )" || return
   [ -n "${selected}" ] && cd "${selected/#\~/${HOME}}"
 }
 bindkey -s ^k "dev-root\n"
