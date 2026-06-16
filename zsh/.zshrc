@@ -9,8 +9,8 @@ fi
 
 # NOTE: This is the most important to use C-e in tmux env
 bindkey -e
-bindkey -s ^k "tmux-sessionizer\n"
-bindkey -s ^q "tmux-sessionizer list\n"
+# bindkey -s ^k "tmux-sessionizer\n"
+# bindkey -s ^q "tmux-sessionizer list\n"
 
 # alias
 alias vi="nvim"
@@ -102,6 +102,13 @@ eval "$(zoxide init zsh)"
 git-change() {
     command git checkout $(git branch --all | fzf)
 }
+
+dev-root() {
+  local dev-root
+  selected="$(ls -d ${HOME}/dev/*/ | sed "s|^${HOME}|~|" | fzf)" || return
+  [ -n "${selected}" ] && cd "${selected/#\~/${HOME}}"
+}
+bindkey -s ^k "dev-root\n"
 
 # bun completions
 [ -s "/Users/araki/.bun/_bun" ] && source "/Users/araki/.bun/_bun"
