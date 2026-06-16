@@ -12,7 +12,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export EDITOR=nvim
 export SAVEHIST=100000
 # export TERM="tmux-256color"
-export TERM="xterm-ghostty"
+# export TERM="xterm-ghostty"
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
 export GPG_TTY=$(tty)
 ### locale ###
