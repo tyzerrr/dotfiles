@@ -1,4 +1,4 @@
-{ buildGoModule, fetchFromGitHub, lib }:
+{ buildGoModule, fetchFromGitHub }:
 
 buildGoModule rec {
   pname = "gwq";
@@ -8,10 +8,10 @@ buildGoModule rec {
     owner = "d-kuro";
     repo = "gwq";
     rev = "v${version}";
-    hash = lib.fakeHash;
+    hash = "sha256-MfCYFbODWnfPxx+6sLlcMT6tqghgILHB13+ccYqVjBA=";
   };
 
-  vendorHash = lib.fakeHash;
+  vendorHash = "sha256-4K01Xf1EXl/NVX1loQ76l1bW8QglBAQdvlZSo7J4NPI=";
   subPackages = [ "cmd/gwq" ];
 
   meta.mainProgram = "gwq";

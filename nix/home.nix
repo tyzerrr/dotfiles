@@ -207,5 +207,6 @@
     postgresql
     mysql84
     wezterm
+    gwq
   ];
 }
