@@ -13,6 +13,9 @@ buildGoModule rec {
 
   vendorHash = "sha256-bMOY0HQqvLg7vnGcUUA+sfK2lzbEin4Cp7kY93i9Jhw=";
 
+  # upstream のテストが Nix sandbox の $HOME ('') で ~ 展開に失敗するためスキップ
+  doCheck = false;
+
   postInstall = ''
     mv $out/bin/my-tmux-sessionizer $out/bin/tmux-sessionizer
   '';
