@@ -36,6 +36,9 @@
       "Read",
       "Grep",
       "Glob"
+    ],
+    "additionalDirectories": [
+      "/Users/t-b-araki/my-payment-learning"
     ]
   },
   "hooks": {
@@ -70,10 +73,7 @@
     "jdtls-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
-    "supabase@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true
+    "code-simplifier@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true
 }
