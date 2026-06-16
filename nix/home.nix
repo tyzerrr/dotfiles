@@ -206,5 +206,6 @@
     buf
     postgresql
     mysql84
+    wezterm
   ];
 }
