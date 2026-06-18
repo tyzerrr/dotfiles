@@ -1,5 +1,8 @@
 return {
 	"ibhagwan/fzf-lua",
+	-- vscode-neovim renders no floating terminal UI, so fzf-lua cannot run inside Cursor.
+	-- LSP navigation (gd/gr/gI) is delegated to Cursor's native LSP in core/remap.lua instead.
+	cond = not vim.g.vscode,
 	-- optional for icon support
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	-- or if using mini.icons/mini.nvim

@@ -70,3 +70,22 @@ vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {})
 
 -- for japanese input
 --
+
+-- vscode-neovim (Cursor): delegate LSP navigation to Cursor's native LSP,
+-- since no LSP client attaches inside the embedded Neovim.
+if vim.g.vscode then
+    local function vscode_action(name)
+        return function()
+            local ok, vscode = pcall(require, "vscode")
+            if ok then
+                vscode.action(name)
+            else
+                vim.fn.VSCodeNotify(name)
+            end
+        end
+    end
+
+    vim.keymap.set("n", "gd", vscode_action("editor.action.revealDefinition"), { desc = "Go to definition" })
+    vim.keymap.set("n", "gr", vscode_action("editor.action.goToReferences"), { desc = "Go to references" })
+    vim.keymap.set("n", "gI", vscode_action("editor.action.goToImplementation"), { desc = "Go to implementation" })
+end
