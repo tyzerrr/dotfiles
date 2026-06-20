@@ -107,8 +107,8 @@ dev-root() {
   local selected
   selected="$(
     {
-      ls -d ${HOME}/dev/*/ 2>/dev/null
-      find ${HOME}/worktrees -type f -name '.git' 2>/dev/null | sed 's|/\.git$|/|'
+      ghq list -p 2>/dev/null
+      fd -H -t f '^\.git$' "${HOME}/worktrees" 2>/dev/null | sed 's|/\.git$|/|'
     } | sed "s|^${HOME}|~|" | fzf
   )" || return
   [ -n "${selected}" ] && cd "${selected/#\~/${HOME}}"
