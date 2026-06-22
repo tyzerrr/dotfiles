@@ -83,6 +83,7 @@
       url."git@github.com:".insteadOf = "https://github.com/";
       gpg.program = "${pkgs.gnupg}/bin/gpg";
       # credential helper は programs.gh.enable が自動で追加するので不要
+      ghq.root = "~/ghq/";
     };
   };
 
