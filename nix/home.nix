@@ -7,6 +7,11 @@
   #home-manager
   programs.home-manager.enable = true;
 
+  # `man home-configuration.nix` 用の options.json 生成を無効化。
+  # 上流 home-manager が source store path を context 無しで参照し
+  # switch 時に warning を出すため止める (man ページが不要なら無害)。
+  manual.manpages.enable = false;
+
   #zoxide
   programs.zoxide = {
     enable = true;
