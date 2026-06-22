@@ -1,5 +1,8 @@
 return {
 	"saghen/blink.cmp",
+	-- vscode-neovim renders no floating completion UI, so blink's menu leaks as a
+	-- real editor buffer inside Cursor. Let Cursor handle completion instead.
+	cond = not vim.g.vscode,
 	-- optional: provides snippets for the snippet source
 	dependencies = { "rafamadriz/friendly-snippets" },
 	completion = {
