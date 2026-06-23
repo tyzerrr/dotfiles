@@ -176,6 +176,7 @@ automatically-unhide-macos-hidden-apps = false
 
 # Ghostty - force tiling layout to prevent macOS native tab issues
 # See: https://github.com/nikitabobko/AeroSpace/issues/778
+# You can get application id with "aerospace list-apps"
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = ['layout tiling']
@@ -190,9 +191,9 @@ run = 'move-node-to-workspace 2'
 if.app-id='com.google.Chrome'
 run = 'move-node-to-workspace 3'
 
-# Ghostty (Main workspace)
+# WezTerm (Main workspace)
 [[on-window-detected]]
-if.app-id='com.mitchellh.ghostty'
+if.app-id='com.github.wez.wezterm'
 run = 'move-node-to-workspace 4'
 
 # Goland
@@ -203,7 +204,12 @@ run = 'move-node-to-workspace 5'
 # Claude desktop
 [[on-window-detected]]
 if.app-id='com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace 7'
+run = 'move-node-to-workspace 6'
+
+# Cursor
+[[on-window-detected]]
+if.app-id='com.todesktop.230313mzl4w4u92'
+  run = 'move-node-to-workspace 7'
 
 # Notion
 [[on-window-detected]]
