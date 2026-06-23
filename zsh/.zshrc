@@ -109,6 +109,7 @@ dev-root() {
     {
       ghq list -p 2>/dev/null
       fd -H -t f '^\.git$' "${HOME}/worktrees" 2>/dev/null | sed 's|/\.git$|/|'
+      fd -t d -d 1 . ${HOME}/.config 2>/dev/null
     } | sed "s|^${HOME}|~|" | fzf
   )" || return
   [ -n "${selected}" ] && cd "${selected/#\~/${HOME}}"
