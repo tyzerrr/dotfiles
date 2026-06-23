@@ -1,4 +1,4 @@
-{ pkgs, username, homeDirectory, ... }:
+{ pkgs, lib, username, homeDirectory, ... }:
 {
   home.username = username;
   home.homeDirectory = homeDirectory;
@@ -167,6 +167,25 @@
       set -g pane-active-border-style "fg=#7aa2f7"
 
       set -g message-style "bg=default,fg=#c0caf5"
+    '';
+  };
+
+  # scenario-test-kit: work profile (t-b-araki) でのみインストール。
+  # private repo + private な kouzoh 推移依存のため nix build せず、
+  # 既存の git(SSH) 認証を再利用する go install で導入する。
+  # programs.git の insteadOf で https→ssh に書き換わるため SSH 鍵で fetch される。
+  home.sessionPath = lib.optionals (username == "t-b-araki") [ "$HOME/go/bin" ];
+
+  home.activation = lib.mkIf (username == "t-b-araki") {
+    scenarioTestKit = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      # go→git→ssh と辿るため system の ssh(/usr/bin) も PATH に含める
+      export PATH="${pkgs.go_1_26}/bin:${pkgs.git}/bin:/usr/bin:/bin:$PATH"
+      export GOPRIVATE="github.com/kouzoh"
+      export GOBIN="$HOME/go/bin"
+      for cmd in scenariotestctl workflow; do
+        $DRY_RUN_CMD go install "github.com/kouzoh/scenario-test-kit/cmd/$cmd@latest" \
+          || warnEcho "scenario-test-kit: $cmd install failed (skipped)"
+      done
     '';
   };
 
