@@ -1,4 +1,3 @@
-vim.opt.guicursor = ""
 vim.opt.autoread = true
 vim.opt.nu = true
 vim.opt.rnu = true
@@ -20,6 +19,9 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+-- fzf-lua等のfloating terminalでカーソルが点滅するのを止める。
+-- nvimデフォルトのguicursorはターミナルモード(t)にblinkon500が入っているため上書きする。
+vim.opt.guicursor:append("t:block-blinkon0")
 vim.opt.errorbells = false
 vim.opt.visualbell = true
 vim.g.mapleader = " "

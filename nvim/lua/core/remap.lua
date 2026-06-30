@@ -25,7 +25,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 --save
 --conform.nvim, format plugin is automatically called, so unnecessary vim.lsp.format()
 vim.keymap.set("n", "<C-s>", function()
-    vim.cmd("w")
+	vim.cmd("w")
 end)
 
 --replace macro
@@ -50,17 +50,23 @@ vim.keymap.set("n", "<leader>cc", "<cmd>Clipper<CR>")
 vim.keymap.set("n", "<C-k>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<C-q>", "<cmd>silent !tmux neww tmux-sessionizer list<CR>")
 
+-- terminal navigation: claudecode等のターミナルから<C-\><C-n>を挟まず<C-w>hjklで移動する
+vim.keymap.set("t", "<C-w>h", [[<C-\><C-n><C-w>h]])
+vim.keymap.set("t", "<C-w>j", [[<C-\><C-n><C-w>j]])
+vim.keymap.set("t", "<C-w>k", [[<C-\><C-n><C-w>k]])
+vim.keymap.set("t", "<C-w>l", [[<C-\><C-n><C-w>l]])
+
 -- quickfix great navigation
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<cr>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<cr>")
 
 -- text yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
-    pattern = "*",
-    group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+	pattern = "*",
+	group = vim.api.nvim_create_augroup("tlexcypher-text-yank-highlight", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- for plugin dev, plenary-busted
@@ -74,18 +80,18 @@ vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {})
 -- vscode-neovim (Cursor): delegate LSP navigation to Cursor's native LSP,
 -- since no LSP client attaches inside the embedded Neovim.
 if vim.g.vscode then
-    local function vscode_action(name)
-        return function()
-            local ok, vscode = pcall(require, "vscode")
-            if ok then
-                vscode.action(name)
-            else
-                vim.fn.VSCodeNotify(name)
-            end
-        end
-    end
+	local function vscode_action(name)
+		return function()
+			local ok, vscode = pcall(require, "vscode")
+			if ok then
+				vscode.action(name)
+			else
+				vim.fn.VSCodeNotify(name)
+			end
+		end
+	end
 
-    vim.keymap.set("n", "gd", vscode_action("editor.action.revealDefinition"), { desc = "Go to definition" })
-    vim.keymap.set("n", "gr", vscode_action("editor.action.goToReferences"), { desc = "Go to references" })
-    vim.keymap.set("n", "gI", vscode_action("editor.action.goToImplementation"), { desc = "Go to implementation" })
+	vim.keymap.set("n", "gd", vscode_action("editor.action.revealDefinition"), { desc = "Go to definition" })
+	vim.keymap.set("n", "gr", vscode_action("editor.action.goToReferences"), { desc = "Go to references" })
+	vim.keymap.set("n", "gI", vscode_action("editor.action.goToImplementation"), { desc = "Go to implementation" })
 end
