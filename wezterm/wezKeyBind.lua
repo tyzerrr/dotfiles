@@ -19,7 +19,7 @@ local karabinerMap = {
 
 function module.apply_to_config(config)
 	config.disable_default_key_bindings = true
-	config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 5000 }
+	config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 5000 }
 	config.keys = {
 
 		{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
