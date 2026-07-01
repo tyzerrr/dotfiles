@@ -68,7 +68,7 @@ function module.apply_to_config(config)
 		local display_text = ""
 
 		if current_dir then
-			display_text = current_dir
+			display_text = tab.tab_index + 1 .. ". " .. current_dir
 		else
 			display_text = title
 		end
