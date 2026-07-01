@@ -4,6 +4,7 @@
 #   make switch              # 現在のユーザー名を profile として適用
 #   make switch PROFILE=araki
 #   make build               # 適用せずビルドのみ
+#   make update              # flake の全 input を最新へ更新 (flake.lock 更新)
 #   make rollback            # 前の世代に戻す
 #   make generations         # 世代一覧
 #
@@ -16,13 +17,12 @@ FLAKE := $(NIX_DIR)
 PROFILE ?= $(USER)
 # Makefile では # がコメント開始になるため \# でエスケープ
 FLAKE_REF := $(FLAKE)\#$(PROFILE)
-# 初回 bootstrap でも確実に flakes を使うため明示する。
-# Determinate Nix では通常不要だが、付けても問題ない。
-NIX_EXPERIMENTAL := --extra-experimental-features 'nix-command flakes'
+# Determinate Nix は nix-command / flakes を既定で有効化しているため
+# --extra-experimental-features は不要。
 
 DARWIN_REBUILD := $(shell command -v darwin-rebuild 2>/dev/null)
 ifeq ($(DARWIN_REBUILD),)
-  REBUILD := nix $(NIX_EXPERIMENTAL) run nix-darwin/master\#darwin-rebuild --
+  REBUILD := nix run nix-darwin/master\#darwin-rebuild --
 else
   REBUILD := $(DARWIN_REBUILD)
 endif
@@ -32,12 +32,13 @@ ifeq ($(UPDATE_LOCK),1)
   LOCK_FLAGS :=
 endif
 
-.PHONY: help switch build rollback generations prepare prepare-system check-determinate
+.PHONY: help switch build update rollback generations prepare prepare-system check-determinate
 
 help:
 	@echo "Usage:"
 	@echo "  make switch [PROFILE=$(PROFILE)]   Apply nix-darwin + home-manager"
 	@echo "  make build  [PROFILE=$(PROFILE)]   Build only (no activation)"
+	@echo "  make update                        Update all flake inputs (flake.lock)"
 	@echo "  make rollback                      Roll back to previous generation"
 	@echo "  make generations                   List system generations"
 	@echo ""
@@ -77,6 +78,13 @@ endif
 build:
 	@echo "build: profile=$(PROFILE) flake=$(FLAKE_REF)"
 	$(REBUILD) build --flake "$(FLAKE_REF)" $(LOCK_FLAGS)
+
+# flake.nix の全 input (nixpkgs / nix-darwin / home-manager / nix-claude-code 等)
+# をまとめて最新へ更新し flake.lock を書き換える。
+# 反映するには続けて `make switch` を実行する。
+update:
+	@echo "update: updating all flake inputs in $(NIX_DIR)"
+	nix flake update --flake "$(FLAKE)"
 
 rollback:
 	sudo $(REBUILD) --rollback
