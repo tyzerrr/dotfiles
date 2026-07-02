@@ -60,6 +60,11 @@ vim.keymap.set("t", "<C-w>l", [[<C-\><C-n><C-w>l]])
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<cr>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<cr>")
 
+-- tab management
+-- 左右のタブ移動は Neovim 標準の gt(右)/gT(左) を使用（<C-t>始まりにすると作成に遅延が出るため）
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { silent = true, desc = "New tab" })
+vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { silent = true, desc = "Close tab" })
+
 -- text yank highlight
 vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
