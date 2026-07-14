@@ -13,6 +13,13 @@ buildGoModule rec {
 
   vendorHash = "sha256-Zc9B5qnDoBQfYXYadLFAuR55MXy6NQp7nOJ3854NYLs=";
 
+  # 公式リリース(goreleaser)と同じ形式でバージョンを埋め込む
+  ldflags = [
+    "-s"
+    "-w"
+    "-X main.version=${version}"
+  ];
+
   # upstream のテストが Nix sandbox の $HOME ('') で ~ 展開に失敗するためスキップ
   doCheck = false;
 
