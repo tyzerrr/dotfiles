@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "tmux-sessionizer";
-  version = "0.0.8";
+  version = "1.0.1";
 
   src = fetchFromGitHub {
     owner = "tyzerrr";
     repo = "tmux-sessionizer";
     rev = "v${version}";
-    sha256 = "0pkskqbsnma8c262kys7r5ll9ivrwjp4iw08iwykqrrizqzzdlcd";
+    sha256 = "0c9p8i0hd2iylhnm7dfk2yfyffyjb5bsrhjb1pr3k0f10ad4rr4c";
   };
 
-  vendorHash = "sha256-bMOY0HQqvLg7vnGcUUA+sfK2lzbEin4Cp7kY93i9Jhw=";
+  vendorHash = "sha256-Zc9B5qnDoBQfYXYadLFAuR55MXy6NQp7nOJ3854NYLs=";
 
   # upstream のテストが Nix sandbox の $HOME ('') で ~ 展開に失敗するためスキップ
   doCheck = false;
