@@ -79,6 +79,13 @@ vim.keymap.set("n", "<leader>tf", "<cmd>PlenaryBustedFile %<CR>", {})
 -- zen-mode
 vim.keymap.set("n", "<leader>z", "<cmd>ZenMode<CR>", {})
 
+-- quickfix
+vim.keymap.set("n", "<leader>qe", function()
+	vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
+end, { desc = "Errors to quickfix" })
+
+vim.keymap.set("n", "<leader>qq", vim.diagnostic.setqflist, { desc = "All diagnostic to quickfix" })
+
 -- for japanese input
 --
 
