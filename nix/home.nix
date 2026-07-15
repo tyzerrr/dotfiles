@@ -233,5 +233,6 @@
     mysql84
     wezterm
     gwq
+    tldr
   ];
 }
