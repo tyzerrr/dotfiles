@@ -174,7 +174,10 @@
   # private repo + private な kouzoh 推移依存のため nix build せず、
   # 既存の git(SSH) 認証を再利用する go install で導入する。
   # programs.git の insteadOf で https→ssh に書き換わるため SSH 鍵で fetch される。
-  home.sessionPath = lib.optionals (username == "t-b-araki") [ "$HOME/go/bin" ];
+  home.sessionPath = [
+    # aqua (home.packages) が管理するツールのインストール先
+    "$HOME/.local/share/aquaproj-aqua/bin"
+  ] ++ lib.optionals (username == "t-b-araki") [ "$HOME/go/bin" ];
 
   home.activation = lib.mkIf (username == "t-b-araki") {
     scenarioTestKit = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -234,5 +237,6 @@
     wezterm
     gwq
     tldr
+    aqua
   ];
 }
