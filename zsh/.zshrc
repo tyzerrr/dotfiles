@@ -13,7 +13,6 @@ bindkey -s ^k "tmux-sessionizer\n"
 bindkey -s ^q "tmux-sessionizer list\n"
 bindkey -s ^d "tmux-sessionizer delete\n"
 
-
 # alias
 alias vi="nvim"
 alias vim="nvim"
@@ -105,18 +104,18 @@ git-change() {
     command git checkout $(git branch --all | fzf)
 }
 
-# dev-root() {
-#   local selected
-#   selected="$(
-#     {
-#       ghq list -p 2>/dev/null
-#       fd -H -t f '^\.git$' "${HOME}/worktrees" 2>/dev/null | sed 's|/\.git$|/|'
-#       fd -t d -d 1 . ${HOME}/.config 2>/dev/null
-#     } | sed "s|^${HOME}|~|" | fzf
-#   )" || return
-#   [ -n "${selected}" ] && cd "${selected/#\~/${HOME}}"
-# }
-# bindkey -s ^k "dev-root\n"
+dev-root() {
+  local selected
+  selected="$(
+    {
+      ghq list -p 2>/dev/null
+      fd -H -t f '^\.git$' "${HOME}/worktrees" 2>/dev/null | sed 's|/\.git$|/|'
+      fd -t d -d 1 . ${HOME}/.config 2>/dev/null
+    } | sed "s|^${HOME}|~|" | fzf
+  )" || return
+  [ -n "${selected}" ] && cd "${selected/#\~/${HOME}}"
+}
+bindkey -s ^d "dev-root\n"
 
 # bun completions
 [ -s "/Users/araki/.bun/_bun" ] && source "/Users/araki/.bun/_bun"
