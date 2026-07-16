@@ -22,6 +22,22 @@ local function send_and_insert()
 	end)
 end
 
+-- ZenMode中はzen-modeのclose()が親ウィンドウへフォーカスを戻すのに加え、
+-- backdropに隠れているだけのClaudeウィンドウが「表示中」扱いになるため、
+-- トグル(ClaudeCode)だと閉じる方向に働いてしまう。
+-- zenを先に明示的に閉じ、フォーカス指向のコマンドで必ずClaudeに移動する。
+local function close_zen_and_run(toggle_cmd, focus_cmd)
+	return function()
+		local ok, zen_view = pcall(require, "zen-mode.view")
+		if ok and zen_view.is_open() then
+			zen_view.close()
+			vim.cmd(focus_cmd)
+		else
+			vim.cmd(toggle_cmd)
+		end
+	end
+end
+
 -- 既定サイズ⇔フルスクリーンをトグルする。元の幅をウィンドウ変数に退避して復元する。
 local function toggle_claude_size()
 	local win = find_claude_win()
@@ -82,7 +98,7 @@ return {
 	keys = {
 		{ "<C-l>", send_and_insert, desc = "選択範囲を送信してInsert", mode = "v" },
 		{ "<leader>af", toggle_claude_size, desc = "Claudeターミナルのサイズ切替" },
-		{ "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Claude Codeを切り替え" },
-		{ "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "セッションを再開" },
+		{ "<leader>ac", close_zen_and_run("ClaudeCode", "ClaudeCodeFocus"), desc = "Claude Codeを切り替え" },
+		{ "<leader>ar", close_zen_and_run("ClaudeCode --resume", "ClaudeCodeFocus --resume"), desc = "セッションを再開" },
 	},
 }
