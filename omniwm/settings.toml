@@ -1,0 +1,230 @@
+# OmniWM settings
+#
+# This file is the canonical OmniWM configuration at ~/.config/omniwm/settings.toml.
+# The workspace and app-rule entries below preserve the former AeroSpace layout:
+#   1-7 -> main display, 8-9 -> secondary display
+#
+# Dwindle is used as the closest equivalent to AeroSpace's `tiles` layout.
+
+[general]
+hotkeysEnabled = true
+defaultLayoutType = "dwindle"
+ipcEnabled = true
+
+[mouseWarp]
+enabled = true
+
+[gaps]
+size = 10
+
+[gaps.outer]
+left = 10
+right = 10
+top = 10
+bottom = 10
+
+[borders]
+enabled = true
+width = 3.0
+
+# Hyprland-style cyan focus border: #89DCEB, expressed as 0.0-1.0 RGBA.
+[borders.color]
+red = 0.5372549
+green = 0.8627451
+blue = 0.9215686
+alpha = 1.0
+
+[workspaceBar]
+enabled = false
+showLabels = true
+showFloatingWindows = false
+hideEmptyWorkspaces = false
+reserveLayoutSpace = false
+
+# AeroSpace: alt-h/j/k/l = focus left/down/up/right
+[[hotkeys]]
+id = "focus.left"
+binding = "Option+H"
+
+[[hotkeys]]
+id = "focus.down"
+binding = "Option+J"
+
+[[hotkeys]]
+id = "focus.up"
+binding = "Option+K"
+
+[[hotkeys]]
+id = "focus.right"
+binding = "Option+L"
+
+# AeroSpace: alt-shift-h/j/k/l = move left/down/up/right
+[[hotkeys]]
+id = "move.left"
+binding = "Option+Shift+H"
+
+[[hotkeys]]
+id = "move.down"
+binding = "Option+Shift+J"
+
+[[hotkeys]]
+id = "move.up"
+binding = "Option+Shift+K"
+
+[[hotkeys]]
+id = "move.right"
+binding = "Option+Shift+L"
+
+# Swap the complete Dwindle tile/container with its left or right neighbor.
+# This is separate from move.left/right, which joins or extracts a window.
+[[hotkeys]]
+id = "moveColumn.left"
+binding = "Control+Option+Shift+H"
+
+[[hotkeys]]
+id = "moveColumn.right"
+binding = "Control+Option+Shift+L"
+
+# AeroSpace: alt-shift-f = fullscreen
+[[hotkeys]]
+id = "toggleFullscreen"
+binding = "Option+Shift+F"
+
+# AeroSpace: alt-minus/equal = resize smart -/+50
+[[hotkeys]]
+id = "resizeFocusedWindow.shrink"
+binding = "Option+Minus"
+
+[[hotkeys]]
+id = "resizeFocusedWindow.grow"
+binding = "Option+Equal"
+
+# Directional keyboard resize. H/J/K/L follows the focus key layout.
+[[hotkeys]]
+id = "resizeGrow.left"
+binding = "Control+Option+H"
+
+[[hotkeys]]
+id = "resizeGrow.down"
+binding = "Control+Option+J"
+
+[[hotkeys]]
+id = "resizeGrow.up"
+binding = "Control+Option+K"
+
+[[hotkeys]]
+id = "resizeGrow.right"
+binding = "Control+Option+L"
+
+# Keep Option+Tab dedicated to workspace back-and-forth instead of OmniWM's
+# default focus-previous action.
+[[hotkeys]]
+id = "focusPrevious"
+binding = "Unassigned"
+
+# AeroSpace: alt-tab = workspace back and forth
+[[hotkeys]]
+id = "workspaceBackAndForth"
+binding = "Option+Tab"
+
+# AeroSpace: alt-shift-tab moved the workspace to the next monitor.
+# OmniWM uses a routed direction; this assumes the secondary monitor is to the right.
+[[hotkeys]]
+id = "moveWorkspaceToMonitor.right"
+binding = "Option+Shift+Tab"
+
+# Workspaces 1-7 on the main display, 8-9 on the secondary display.
+[[workspaces]]
+id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
+name = "1"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "454CECD4-5E9D-4ED1-95D7-979D48817F5F"
+name = "2"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "BEB842B5-E894-4791-9FD1-397C3CDD3538"
+name = "3"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "248AA883-2261-4D45-943C-79C0E46A232B"
+name = "4"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "8B8C45D6-CE9E-41D9-BD50-BE4989D5E3DE"
+name = "5"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "5953F2BF-A378-4266-91B2-287174C4FA4D"
+name = "6"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "A7D5E104-6985-4516-8ED5-07F144F2A33D"
+name = "7"
+monitorAssignment = { type = "main" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "D4D4E0E1-BB5A-4E9F-9A6C-0C5370B4A801"
+name = "8"
+monitorAssignment = { type = "secondary" }
+layoutType = "dwindle"
+
+[[workspaces]]
+id = "E5E5F1F2-CC6B-4FA0-A7BD-1D6481C5B912"
+name = "9"
+monitorAssignment = { type = "secondary" }
+layoutType = "dwindle"
+
+# AeroSpace on-window-detected rules.
+[[appRules]]
+id = "1A2B3C4D-0001-4000-8000-000000000001"
+bundleId = "com.tinyspeck.slackmacgap"
+assignToWorkspace = "2"
+
+[[appRules]]
+id = "1A2B3C4D-0002-4000-8000-000000000002"
+bundleId = "com.google.Chrome"
+assignToWorkspace = "3"
+
+[[appRules]]
+id = "1A2B3C4D-0003-4000-8000-000000000003"
+bundleId = "com.github.wez.wezterm"
+assignToWorkspace = "4"
+
+[[appRules]]
+id = "1A2B3C4D-0004-4000-8000-000000000004"
+bundleId = "com.jetbrains.goland"
+assignToWorkspace = "5"
+
+[[appRules]]
+id = "1A2B3C4D-0005-4000-8000-000000000005"
+bundleId = "com.anthropic.claudefordesktop"
+assignToWorkspace = "6"
+
+[[appRules]]
+id = "1A2B3C4D-0006-4000-8000-000000000006"
+bundleId = "com.todesktop.230313mzl4w4u92"
+assignToWorkspace = "7"
+
+[[appRules]]
+id = "1A2B3C4D-0007-4000-8000-000000000007"
+bundleId = "notion.id"
+assignToWorkspace = "8"
+
+[[appRules]]
+id = "1A2B3C4D-0008-4000-8000-000000000008"
+bundleId = "com.mitchellh.ghostty"
+layout = "tile"
