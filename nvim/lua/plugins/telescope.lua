@@ -15,8 +15,12 @@ return {
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end, {})
 		vim.keymap.set("n", "<leader>vh", builtin.help_tags, {})
-		vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
-		vim.keymap.set("n", "gI", builtin.lsp_implementations, {})
-		vim.keymap.set("n", "gr", builtin.lsp_references, {})
+		-- vscode-neovim has no Neovim-side LSP client.  Keep the mappings from
+		-- core.remap.lua so Cursor can handle these with its native LSP.
+		if not vim.g.vscode then
+			vim.keymap.set("n", "gd", builtin.lsp_definitions, {})
+			vim.keymap.set("n", "gI", builtin.lsp_implementations, {})
+			vim.keymap.set("n", "gr", builtin.lsp_references, {})
+		end
 	end,
 }

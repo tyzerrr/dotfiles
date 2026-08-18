@@ -2,7 +2,7 @@ return {
 	"tyzerrr/octo.nvim",
 	-- ローカルのフォーク（未pushの変更を含む）を直接読み込む。
 	-- これを外すとlazyがupstream(pwntester)をcloneして変更が反映されない。
-	dir = "/Users/t-b-araki/ghq/github.com/tyzerrr/octo.nvim",
+	dir = "/Users/araki/ghq/github.com/tyzerrr/octo.nvim",
 	cmd = "Octo",
 	opts = {
 		-- or "fzf-lua" or "snacks" or "default"
