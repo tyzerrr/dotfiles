@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   pname = "tmux-sessionizer";
-  version = "1.0.1";
+  version = "1.0.2";
 
   src = fetchFromGitHub {
     owner = "tyzerrr";
     repo = "tmux-sessionizer";
     rev = "v${version}";
-    sha256 = "0c9p8i0hd2iylhnm7dfk2yfyffyjb5bsrhjb1pr3k0f10ad4rr4c";
+    sha256 = "0zws54s4ykjpn0095vyg6apzbypyflcmd7agnif4vxwnihvk6z6x";
   };
 
   vendorHash = "sha256-Zc9B5qnDoBQfYXYadLFAuR55MXy6NQp7nOJ3854NYLs=";

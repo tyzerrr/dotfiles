@@ -228,7 +228,6 @@
     pandoc
     supabase-cli
     sketchybar
-    aerospace
     macism
     tmux-sessionizer
     buf
