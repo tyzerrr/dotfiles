@@ -37,10 +37,10 @@
       "Grep",
       "Glob"
     ],
+    "defaultMode": "auto",
     "additionalDirectories": [
       "/Users/t-b-araki/my-payment-learning"
-    ],
-    "defaultMode": "auto"
+    ]
   },
   "hooks": {
     "Notification": [
