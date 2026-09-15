@@ -54,9 +54,6 @@ git-change() {
     command git checkout $(git branch --all | fzf)
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
 eval "$(fzf --zsh)"
 
 # -- Use fd instead of fzf --
@@ -122,7 +119,7 @@ bindkey -s ^d "dev-root\n"
 
 ZSH="$HOME/.config/zsh/ohmyzsh"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+zstyle ':omz:update' mode disabled
 source $ZSH/oh-my-zsh.sh
 
-#Star Ship
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config "$ZDOTDIR/omp.json")"
