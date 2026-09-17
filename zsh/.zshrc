@@ -106,7 +106,8 @@ dev-root() {
   selected="$(
     {
       ghq list -p 2>/dev/null
-      fd -H -t f '^\.git$' "${HOME}/worktrees" 2>/dev/null | sed 's|/\.git$|/|'
+      # worktrees は host/org/repo/branch の固定4階層なので深さを制限し node_modules 等への降下を防ぐ
+      fd -H -t f -d 5 '^\.git$' "${HOME}/worktrees" 2>/dev/null | sed 's|/\.git$|/|'
       fd -t d -d 1 . ${HOME}/.config 2>/dev/null
     } | sed "s|^${HOME}|~|" | fzf
   )" || return
