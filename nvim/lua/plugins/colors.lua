@@ -1,10 +1,11 @@
 function ColorMyPencils(color)
 	-- color = color or "vscode"
 	-- color = color or "nord"
-	color = color or "rose-pine"
+	-- color = color or "rose-pine"
 	-- color = color or "tokyonight"
 	-- color = "kanagawa"
 	-- color = color or "catppuccin"
+	color = "onehalfdark"
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -21,22 +22,22 @@ return {
 	-- 		-- ColorMyPencils()
 	-- 	end,
 	-- },
-	{
-		"rose-pine/neovim",
-		name = "rose-pine",
-		-- enabled = false, -- デフォルトでは無効化しておく例
-		lazy = false,
-		priority = 1000,
-		config = function()
-			require("rose-pine").setup({
-				styles = {
-					italic = false,
-				},
-			})
-			vim.cmd.colorscheme("rose-pine")
-			-- ColorMyPencils()
-		end,
-	},
+	-- {
+	-- 	"rose-pine/neovim",
+	-- 	name = "rose-pine",
+	-- 	-- enabled = false, -- デフォルトでは無効化しておく例
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		require("rose-pine").setup({
+	-- 			styles = {
+	-- 				italic = false,
+	-- 			},
+	-- 		})
+	-- 		vim.cmd.colorscheme("rose-pine")
+	-- 		-- ColorMyPencils()
+	-- 	end,
+	-- },
 	-- {
 	--     "rebelot/kanagawa.nvim",
 	--     lazy = false,    -- 起動時にロード
@@ -46,4 +47,15 @@ return {
 	--         ColorMyPencils()
 	--     end,
 	-- }
+	{
+		"sonph/onehalf",
+		name = "onehalfdark",
+		lazy = false,
+		priority = 1000,
+		-- colorscheme はリポジトリ直下ではなく vim/ 配下にあるため rtp を指定する
+		config = function(plugin)
+			vim.opt.rtp:append(plugin.dir .. "/vim")
+			vim.cmd.colorscheme("onehalfdark")
+		end,
+	},
 }
