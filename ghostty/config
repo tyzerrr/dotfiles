@@ -1,7 +1,6 @@
 cursor-style = block
 cursor-style-blink = false
-theme = Rose Pine Moon
-background = 000000
+theme = One Half Dark
 window-padding-x = 20
 window-padding-y = 5
 window-padding-balance = true
