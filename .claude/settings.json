@@ -52,6 +52,15 @@
             "command": "echo \"[$(date)] idle_prompt hook triggered\" >> /tmp/claude-hooks.log && ~/.config/zsh/claude-notify.sh '入力を待っています'"
           }
         ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
+          }
+        ]
       }
     ],
     "Stop": [
@@ -60,6 +69,70 @@
           {
             "type": "command",
             "command": "echo \"[$(date)] Stop hook triggered\" >> /tmp/claude-hooks.log && ~/.config/zsh/claude-notify.sh 'タスクが完了しました'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -n \"$NVIM_CLAUDE_SESSION_FILE\" ] && jq -r '[.session_id, .hook_event_name, (.tool_input.file_path // .tool_input.notebook_path // \"\")] | @tsv' > \"$NVIM_CLAUDE_SESSION_FILE\" || true",
+            "timeout": 5
           }
         ]
       }
