@@ -1,8 +1,15 @@
+-- 1つのウィンドウ内で複数のClaudeセッションをタブとして切り替えるcustom provider。
+-- 設計は lua/tyzerrr/claude_tabs/ を参照。
+local claude_tabs = require("tyzerrr.claude_tabs")
+
 -- Claudeターミナルのウィンドウを探す（エディタ側にフォーカスがあっても操作できるように）。
 local function find_claude_win()
+	local buf = claude_tabs.provider.get_active_bufnr()
+	if not buf then
+		return
+	end
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local buf = vim.api.nvim_win_get_buf(win)
-		if vim.bo[buf].buftype == "terminal" and vim.api.nvim_buf_get_name(buf):match("claude") then
+		if vim.api.nvim_win_get_buf(win) == buf then
 			return win
 		end
 	end
@@ -10,6 +17,7 @@ end
 
 -- 選択範囲をClaudeに送信したあと、ターミナルにフォーカスしてInsertモードに入る。
 -- 送信直後に続けて入力したいときの操作を一手で済ませる。
+-- 送り先がアクティブなタブだけになるのは claude_tabs.setup() が本体のbroadcastを差し替えているため。
 local function send_and_insert()
 	vim.cmd("ClaudeCodeSend")
 	-- ClaudeCodeSendは非同期にウィンドウを開く場合があるため、フォーカスは次のtickで行う。
@@ -26,15 +34,25 @@ end
 -- backdropに隠れているだけのClaudeウィンドウが「表示中」扱いになるため、
 -- トグル(ClaudeCode)だと閉じる方向に働いてしまう。
 -- zenを先に明示的に閉じ、フォーカス指向のコマンドで必ずClaudeに移動する。
+local function close_zen()
+	local ok, zen_view = pcall(require, "zen-mode.view")
+	if ok and zen_view.is_open() then
+		zen_view.close()
+		return true
+	end
+	return false
+end
+
 local function close_zen_and_run(toggle_cmd, focus_cmd)
 	return function()
-		local ok, zen_view = pcall(require, "zen-mode.view")
-		if ok and zen_view.is_open() then
-			zen_view.close()
-			vim.cmd(focus_cmd)
-		else
-			vim.cmd(toggle_cmd)
-		end
+		vim.cmd(close_zen() and focus_cmd or toggle_cmd)
+	end
+end
+
+local function with_zen_closed(fn)
+	return function()
+		close_zen()
+		fn()
 	end
 end
 
@@ -64,12 +82,14 @@ return {
 	config = function()
 		require("claudecode").setup({
 			terminal = {
+				provider = claude_tabs.provider,
 				-- normalモードでスクロールしてから戻ってもinsertに飛ばされず、
 				-- スクロール位置を保持する。Ink TUIの再描画ズレを抑える（#232）。
 				-- 入力したいときは `i` を押す。
 				auto_insert = false,
 			},
 		})
+		claude_tabs.setup()
 
 		-- エディタを閉じたとき、残るのがClaudeターミナルだけになるなら一緒に閉じる。
 		-- ターミナルだけが取り残されてnvimが終了できない状態を避ける。
@@ -88,7 +108,8 @@ return {
 				end
 				if editor_wins <= 1 then
 					local win = find_claude_win()
-					if win then
+					-- Claudeウィンドウ自身で:q/:qaしたときに閉じると、カレントウィンドウが消えて:qaが中断される
+					if win and win ~= vim.api.nvim_get_current_win() then
 						pcall(vim.api.nvim_win_close, win, true)
 					end
 				end
@@ -96,9 +117,23 @@ return {
 		})
 	end,
 	keys = {
-		{ "<C-l>", send_and_insert, desc = "選択範囲を送信してInsert", mode = "v" },
+		{ "<C-l>", send_and_insert, desc = "選択範囲をアクティブなタブに送信してInsert", mode = "v" },
 		{ "<leader>af", toggle_claude_size, desc = "Claudeターミナルのサイズ切替" },
 		{ "<leader>ac", close_zen_and_run("ClaudeCode", "ClaudeCodeFocus"), desc = "Claude Codeを切り替え" },
-		{ "<leader>ar", close_zen_and_run("ClaudeCode --resume", "ClaudeCodeFocus --resume"), desc = "セッションを再開" },
+		-- 引数付きの起動はproviderが新しいタブとして開くため、既存のセッションは残る
+		{
+			"<leader>ar",
+			close_zen_and_run("ClaudeCode --resume", "ClaudeCodeFocus --resume"),
+			desc = "セッションを再開(新しいタブ)",
+		},
+		{ "<leader>an", with_zen_closed(claude_tabs.new), desc = "Claudeタブを新規作成" },
+		{
+			"<leader>ad",
+			with_zen_closed(claude_tabs.fork),
+			desc = "今のClaudeタブの文脈を引き継いで新規タブ",
+		},
+		{ "<leader>ax", claude_tabs.close, desc = "今のClaudeタブを閉じる" },
+		{ "]a", claude_tabs.next, desc = "次のClaudeタブ" },
+		{ "[a", claude_tabs.prev, desc = "前のClaudeタブ" },
 	},
 }
