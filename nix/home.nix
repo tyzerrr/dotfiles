@@ -173,7 +173,7 @@
       set -g status-justify absolute-centre
 
       set -g status-left-length 40
-      set -g status-left "#[fg=#7aa2f7,bold]session: #(~/.config/tmux/scripts/compress_path.sh '#{session_name}') "
+      set -g status-left "#[fg=#7aa2f7,bold]session: #(${pkgs.writeShellScript "tmux-compress-path" (builtins.readFile ../tmux/scripts/compress_path.sh)} '#{session_name}') "
 
       set -g status-right ""
 
