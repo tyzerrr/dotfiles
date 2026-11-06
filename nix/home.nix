@@ -5,6 +5,7 @@
     ./home/ghostty.nix
     ./home/aerospace.nix
     ./home/gwq.nix
+    ./home/cmux.nix
   ];
 
   home.username = username;
