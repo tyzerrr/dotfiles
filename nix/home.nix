@@ -15,6 +15,7 @@
     ./home/kitty.nix
     ./home/wezterm.nix
     ./home/helm.nix
+    ./home/homebrew.nix
   ];
 
   home.username = username;
