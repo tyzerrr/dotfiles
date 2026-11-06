@@ -34,3 +34,7 @@ zsh/.zshrc.pre-oh-my-zsh-*
 *.pem
 *.key
 merctl/*
+
+# === nix build output ===
+nix/result
+result
