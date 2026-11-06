@@ -1,4 +1,14 @@
-{ username, ... }:
+{ pkgs, username, ... }:
+let
+  omniwmRefreshBorder = pkgs.replaceVarsWith {
+    src = ../omniwm/refresh-border.sh;
+    isExecutable = true;
+    replacements = {
+      omniwmctl = "${pkgs.omniwm}/bin/omniwmctl";
+      jq = "${pkgs.jq}/bin/jq";
+    };
+  };
+in
 {
   # Nix 自体は Determinate Nix Installer に管理させる
   nix.enable = false;
@@ -26,14 +36,15 @@
   # OmniWM 0.6.0 can leave the focus border waiting for a mouse click after
   # a workspace switch. Keep the small IPC workaround running per-user.
   launchd.user.agents.omniwm-border-refresh = {
-    script = "/Users/${username}/.config/omniwm/refresh-border.sh --watch";
+    script = "${omniwmRefreshBorder} --watch";
     serviceConfig = {
       RunAtLoad = true;
       KeepAlive = true;
       ProcessType = "Background";
       ThrottleInterval = 5;
-      StandardOutPath = "/tmp/omniwm-border-refresh.log";
-      StandardErrorPath = "/tmp/omniwm-border-refresh.log";
+      # world-writable な /tmp を避け、ユーザーのログディレクトリに出す
+      StandardOutPath = "/Users/${username}/Library/Logs/omniwm-border-refresh.log";
+      StandardErrorPath = "/Users/${username}/Library/Logs/omniwm-border-refresh.log";
     };
   };
 

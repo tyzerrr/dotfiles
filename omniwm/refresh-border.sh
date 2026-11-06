@@ -7,8 +7,9 @@
 
 set -u
 
-omniwmctl_path="/opt/homebrew/bin/omniwmctl"
-jq_path="/Users/araki/.nix-profile/bin/jq"
+# nix-darwin の launchd agent から replaceVarsWith で store パスを埋め込む
+omniwmctl_path="@omniwmctl@"
+jq_path="@jq@"
 
 if [[ ! -x "$omniwmctl_path" || ! -x "$jq_path" ]]; then
   exit 0
@@ -43,7 +44,9 @@ if [[ "${1:-}" != "--watch" ]]; then
   exit 0
 fi
 
-lock_dir="/private/tmp/omniwm-border-refresh-watch.lock"
+# 共有の /private/tmp だと他ユーザーが先に作るだけで watcher を止められるため、
+# 再起動時に掃除されるユーザー専用の一時ディレクトリに置く
+lock_dir="$(/usr/bin/getconf DARWIN_USER_TEMP_DIR)omniwm-border-refresh-watch.lock"
 if ! /bin/mkdir "$lock_dir" 2>/dev/null; then
   exit 0
 fi
