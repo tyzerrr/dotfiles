@@ -3,11 +3,15 @@
   imports = [
     ./home/zsh
     ./home/ghostty.nix
+    ./home/aerospace.nix
   ];
 
   home.username = username;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "25.11";
+
+  # macOS でも ~/Library ではなく XDG パスに設定を置く (AeroSpace 等が参照先を切り替える)
+  xdg.enable = true;
 
   #home-manager
   programs.home-manager.enable = true;
