@@ -7,6 +7,7 @@
     ./home/gwq.nix
     ./home/cmux.nix
     ./home/omniwm.nix
+    ./home/borders.nix
   ];
 
   home.username = username;
