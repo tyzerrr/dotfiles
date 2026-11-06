@@ -16,6 +16,7 @@
     ./home/wezterm.nix
     ./home/helm.nix
     ./home/homebrew.nix
+    ./home/scripts.nix
   ];
 
   home.username = username;
