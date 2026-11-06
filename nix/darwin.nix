@@ -20,7 +20,9 @@ in
   # zsh をログインシェルとして有効化
   programs.zsh.enable = true;
 
-  # GUI アプリ等は nixpkgs に無い / darwin 非対応なので Homebrew で管理
+  # nixpkgs に無い / brew 専用の仕組みに依存するものだけ Homebrew で管理する。
+  # マシン固有のものは hosts/<username>.nix に書く。
+  # cleanup = "none" なので、ここに無い既存の formula/cask は削除されない
   homebrew = {
     enable = true;
     onActivation = {
