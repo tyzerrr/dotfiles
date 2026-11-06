@@ -13,6 +13,7 @@
     ./home/karabiner.nix
     ./home/claude.nix
     ./home/kitty.nix
+    ./home/wezterm.nix
   ];
 
   home.username = username;
