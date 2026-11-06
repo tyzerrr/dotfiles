@@ -11,6 +11,7 @@
     ./home/sketchybar.nix
     ./home/nvim.nix
     ./home/karabiner.nix
+    ./home/claude.nix
   ];
 
   home.username = username;
