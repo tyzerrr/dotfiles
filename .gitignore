@@ -38,3 +38,6 @@ merctl/*
 # === nix build output ===
 nix/result
 result
+
+# === Karabiner-Elements が自動生成するバックアップ ===
+karabiner/automatic_backups/
