@@ -266,6 +266,8 @@
     gwq
     tldr
     aqua
+    # .claude/mcp.json から呼ぶ。go run ...@latest で毎回未固定のコードを実行しないよう nixpkgs で固定する
+    github-mcp-server
     automake
     bear
     clang-tools

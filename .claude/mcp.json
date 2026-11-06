@@ -2,12 +2,16 @@
   "mcpServers": {
     "github": {
       "command": "sh",
-      "args": ["-c", "GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) go run github.com/github/github-mcp-server/cmd/github-mcp-server@latest stdio"]
+      "args": [
+        "-c",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) exec github-mcp-server stdio"
+      ]
     },
     "mcp-obsidian": {
       "command": "npx",
       "args": [
-        "obsidian-mcp-server"
+        "-y",
+        "obsidian-mcp-server@3.8.0"
       ],
       "env": {
         "OBSIDIAN_API_KEY": "${OBSIDIAN_API_KEY}",
