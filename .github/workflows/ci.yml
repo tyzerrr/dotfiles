@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  nix:
+    name: nix-darwin build (${{ matrix.profile }})
+    runs-on: macos-15
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [araki, t-b-araki]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: DeterminateSystems/determinate-nix-action@16f94ba7aae399b9f9077c254b6719ec6de7e3e3 # v3.24.2
+      - name: flake check
+        run: nix flake check ./nix
+      # switch はせず、nix-darwin + home-manager の全体がビルドできることだけ確認する
+      - name: build system
+        run: nix build --print-build-logs ./nix#darwinConfigurations.${{ matrix.profile }}.system
+
+  gitleaks:
+    name: secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: DeterminateSystems/determinate-nix-action@16f94ba7aae399b9f9077c254b6719ec6de7e3e3 # v3.24.2
+      # 公開 repo なので履歴全体を走査する。設定は .gitleaks.toml
+      - name: gitleaks
+        run: nix run --inputs-from ./nix nixpkgs#gitleaks -- git --no-banner --redact --exit-code 1 .

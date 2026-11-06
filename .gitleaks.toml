@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "GPG 署名鍵の fingerprint は公開情報"
+regexes = ['''28D3AABC18605362F8975AFA7B5A5A50B3388C95''']
