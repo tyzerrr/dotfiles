@@ -12,6 +12,7 @@
     ./home/nvim.nix
     ./home/karabiner.nix
     ./home/claude.nix
+    ./home/kitty.nix
   ];
 
   home.username = username;
