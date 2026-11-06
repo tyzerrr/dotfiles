@@ -14,6 +14,7 @@
     ./home/claude.nix
     ./home/kitty.nix
     ./home/wezterm.nix
+    ./home/helm.nix
   ];
 
   home.username = username;
