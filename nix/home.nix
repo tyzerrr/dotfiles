@@ -1,5 +1,9 @@
 { pkgs, lib, username, homeDirectory, ... }:
 {
+  imports = [
+    ./home/zsh
+  ];
+
   home.username = username;
   home.homeDirectory = homeDirectory;
   home.stateVersion = "25.11";
