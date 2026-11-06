@@ -2,6 +2,7 @@
 {
   imports = [
     ./home/zsh
+    ./home/ghostty.nix
   ];
 
   home.username = username;
