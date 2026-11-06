@@ -44,6 +44,7 @@
         specialArgs = { inherit username; };
         modules = [
           ./darwin.nix
+          ./hosts/${username}.nix
           home-manager.darwinModules.home-manager
           {
             nixpkgs.pkgs = pkgs;
