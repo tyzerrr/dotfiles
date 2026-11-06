@@ -8,6 +8,7 @@
     ./home/cmux.nix
     ./home/omniwm.nix
     ./home/borders.nix
+    ./home/sketchybar.nix
   ];
 
   home.username = username;
