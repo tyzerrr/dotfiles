@@ -9,6 +9,7 @@
     ./home/omniwm.nix
     ./home/borders.nix
     ./home/sketchybar.nix
+    ./home/nvim.nix
   ];
 
   home.username = username;
