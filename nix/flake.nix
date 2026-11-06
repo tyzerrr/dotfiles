@@ -28,11 +28,14 @@
           self.overlays.default
         ];
       };
+      # mkOutOfStoreSymlink は store 外の絶対パスを要求するため clone 先を固定する
+      dotfilesDirOf = username: "/Users/${username}/dotfiles";
       mkHomeConfiguration = username: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
           inherit username;
           homeDirectory = "/Users/${username}";
+          dotfilesDir = dotfilesDirOf username;
         };
         modules = [ ./home.nix ];
       };
@@ -48,9 +51,12 @@
             # Keep home-manager packages in ~/.nix-profile instead of
             # nix-darwin's /etc/profiles/per-user/$USER profile.
             home-manager.useUserPackages = false;
+            # 移行前から存在するファイルを上書きせず *.before-hm に退避させる
+            home-manager.backupFileExtension = "before-hm";
             home-manager.extraSpecialArgs = {
               inherit username;
               homeDirectory = "/Users/${username}";
+              dotfilesDir = dotfilesDirOf username;
             };
             home-manager.users.${username} = import ./home.nix;
           }

@@ -11,8 +11,12 @@
 # profile は flake の darwinConfigurations 名 (= OS ユーザー名)。
 # darwin-rebuild switch 1 回で nix-darwin (Homebrew cask 等) と home-manager の両方が適用される。
 
-CONFIG_DIR := $(HOME)/.config
-NIX_DIR := $(CONFIG_DIR)/nix
+# Makefile 自身の位置から解決し、clone 先に依存させない
+NIX_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
+REPO_DIR := $(patsubst %/,%,$(dir $(NIX_DIR)))
+# flake.nix の dotfilesDirOf と一致させること
+DOTFILES_DIR := $(HOME)/dotfiles
+LEGACY_DIR := $(HOME)/.config
 FLAKE := $(NIX_DIR)
 PROFILE ?= $(USER)
 # Makefile では # がコメント開始になるため \# でエスケープ
@@ -32,7 +36,7 @@ ifeq ($(UPDATE_LOCK),1)
   LOCK_FLAGS :=
 endif
 
-.PHONY: help switch build update rollback generations prepare prepare-system check-determinate
+.PHONY: help switch build update rollback generations prepare prepare-system check-determinate check-location
 
 help:
 	@echo "Usage:"
@@ -53,6 +57,23 @@ check-determinate:
 		exit 1; \
 	fi
 
+# mkOutOfStoreSymlink のリンク先が $(DOTFILES_DIR) 固定なので、別の場所から
+# switch すると nvim などが壊れたリンクになる。
+# また ~/.config が旧 repo のまま未コミット変更を抱えていると、home-manager が
+# それらを *.before-hm に退避して clone 側の内容で置き換えてしまうため止める。
+check-location:
+	@if [ "$(REPO_DIR)" != "$(DOTFILES_DIR)" ]; then \
+		echo "error: this repository must be cloned to $(DOTFILES_DIR) (current: $(REPO_DIR))"; \
+		echo "see README.md: ~/.config からの移行"; \
+		exit 1; \
+	fi
+	@if [ -d "$(LEGACY_DIR)/.git" ] && [ ! -L "$(LEGACY_DIR)/nvim" ] \
+		&& [ -n "$$(git -C "$(LEGACY_DIR)" status --porcelain --untracked-files=no)" ]; then \
+		echo "error: $(LEGACY_DIR) still has uncommitted changes in the old dotfiles checkout."; \
+		echo "commit and push them, then pull in $(DOTFILES_DIR) before switching."; \
+		exit 1; \
+	fi
+
 # 初回のみ: nix-darwin が管理する shell 初期化ファイルを退避 (冪等)
 # /etc/nix は Determinate Nix Installer に管理させるため触らない。
 # バックアップ (*.before-nix-darwin) が既にあればスキップ
@@ -67,7 +88,7 @@ prepare prepare-system:
 		fi; \
 	done
 
-switch: check-determinate prepare-system
+switch: check-determinate check-location prepare-system
 	@echo "switch: profile=$(PROFILE) flake=$(FLAKE_REF)"
 ifeq ($(DARWIN_REBUILD),)
 	sudo env HOME="$(HOME)" USER="$(USER)" $(REBUILD) switch --flake "$(FLAKE_REF)" $(LOCK_FLAGS)
