@@ -92,6 +92,12 @@
     };
   };
 
+  # programs.git.delta は home-manager で削除済みのため独立モジュールを使う
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   #gpg
   programs.gpg.enable = true;
 
@@ -231,11 +237,34 @@
     macism
     tmux-sessionizer
     buf
-    postgresql
+    # Homebrew の postgresql@14 から移行したため既存データディレクトリとメジャーバージョンを揃える
+    postgresql_14
     mysql84
     wezterm
     gwq
     tldr
     aqua
+    automake
+    bear
+    clang-tools
+    cmake
+    gauche
+    git-filter-repo
+    htop
+    k9s
+    # minikube が bin/kubectl を同梱して buildEnv が衝突するため単体版を優先
+    (lib.hiPrio kubectl)
+    libtool
+    parallel
+    qemu
+    redis
+    sheldon
+    zsh-syntax-highlighting
+    racket
+    emacs
+    aerospace
+    omniwm
+    codex
+    nerd-fonts.hack
   ];
 }
