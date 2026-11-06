@@ -6,6 +6,7 @@
     ./home/aerospace.nix
     ./home/gwq.nix
     ./home/cmux.nix
+    ./home/omniwm.nix
   ];
 
   home.username = username;
