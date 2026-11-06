@@ -10,6 +10,7 @@
     ./home/borders.nix
     ./home/sketchybar.nix
     ./home/nvim.nix
+    ./home/karabiner.nix
   ];
 
   home.username = username;
