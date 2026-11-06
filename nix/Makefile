@@ -26,7 +26,8 @@ FLAKE_REF := $(FLAKE)\#$(PROFILE)
 
 DARWIN_REBUILD := $(shell command -v darwin-rebuild 2>/dev/null)
 ifeq ($(DARWIN_REBUILD),)
-  REBUILD := nix run nix-darwin/master\#darwin-rebuild --
+  # flake.lock で固定された nix-darwin を使う (master を sudo で実行しない)
+  REBUILD := nix run --inputs-from "$(FLAKE)" nix-darwin\#darwin-rebuild --
 else
   REBUILD := $(DARWIN_REBUILD)
 endif
