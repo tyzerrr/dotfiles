@@ -4,6 +4,7 @@
     ./home/zsh
     ./home/ghostty.nix
     ./home/aerospace.nix
+    ./home/gwq.nix
   ];
 
   home.username = username;
