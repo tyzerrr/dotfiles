@@ -16,4 +16,25 @@
       "sf-symbols"
     ];
   };
+
+  # 2026-11 時点で明示的に設定されていた値をそのまま宣言している
+  system.defaults = {
+    dock = {
+      autohide = true;
+      tilesize = 47;
+      orientation = "left";
+      show-recents = false;
+    };
+    finder.FXPreferredViewStyle = "clmv";
+    trackpad.Clicking = false;
+    screencapture.location = "~/Documents/";
+    NSGlobalDomain = {
+      KeyRepeat = 2;
+      InitialKeyRepeat = 15;
+      ApplePressAndHoldEnabled = false;
+      _HIHideMenuBar = false;
+      NSAutomaticCapitalizationEnabled = true;
+      AppleKeyboardUIMode = 3;
+    };
+  };
 }
