@@ -118,19 +118,55 @@ This repository used to be cloned directly into `~/.config`. home-manager cannot
 
 ### Check after applying
 
+Commands installed by Nix resolve from `~/.nix-profile` first. Homebrew or MacPorts copies may follow; only the first line matters.
+
 ```sh
-# Commands installed by Nix resolve from ~/.nix-profile
 which -a kubectl cmake emacs codex
-
-# GUI apps installed by Nix (AeroSpace, OmniWM, Emacs, Racket, ...)
-ls ~/Applications/"Home Manager Apps"
-
-# launchd agents (AeroSpace, OmniWM border-refresh watcher)
-launchctl list | grep -E 'aerospace|omniwm'
-
-# Linked configs point into ~/dotfiles
-readlink ~/.config/nvim ~/.config/karabiner ~/.claude/settings.json
 ```
+
+```text
+/Users/<you>/.nix-profile/bin/kubectl
+/opt/homebrew/bin/kubectl
+/Users/<you>/.nix-profile/bin/cmake
+/opt/homebrew/bin/cmake
+/Users/<you>/.nix-profile/bin/emacs
+/Users/<you>/.nix-profile/bin/codex
+```
+
+GUI apps installed by Nix are in `~/Applications/Home Manager Apps`.
+
+```sh
+ls ~/Applications/"Home Manager Apps"
+```
+
+```text
+AeroSpace.app  Emacs.app  OmniWM.app  pinentry-mac.app  TemporaryWindow.app  WezTerm.app
+```
+
+The launchd agents (AeroSpace and the OmniWM border-refresh watcher) are running. The first column is a PID, and the second is the last exit status, which should be `0`.
+
+```sh
+launchctl list | grep -E 'aerospace|omniwm'
+```
+
+```text
+77548   0       org.nix-community.home.aerospace
+61977   0       org.nixos.omniwm-border-refresh
+```
+
+Linked configs point into `~/dotfiles`. A plain `readlink` stops at the intermediate `/nix/store/...-home-manager-files/...` link, so use `-f` to follow the chain.
+
+```sh
+readlink -f ~/.config/nvim ~/.config/karabiner ~/.claude/settings.json
+```
+
+```text
+/Users/<you>/dotfiles/nvim
+/Users/<you>/dotfiles/karabiner
+/Users/<you>/dotfiles/.claude/settings.json
+```
+
+If a path ends in `/nix/store/...` instead, that file is a store copy, not a link to the repository.
 
 Accessibility permissions for AeroSpace, OmniWM and Karabiner-Elements cannot be declared. Grant them in System Settings → Privacy & Security → Accessibility on the first run and again after a Nix-installed app is updated.
 

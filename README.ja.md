@@ -118,19 +118,55 @@ profile は OS ユーザー名で、`araki` は personal、`t-b-araki` は work 
 
 ### 適用後の確認
 
+nix で入れたコマンドは `~/.nix-profile` から先に解決される。Homebrew や MacPorts のものが後に続いてもよく、見るのは1行目だけ。
+
 ```sh
-# nix で入れたコマンドが ~/.nix-profile から解決されているか
 which -a kubectl cmake emacs codex
-
-# nix で入れた GUI アプリ (AeroSpace, OmniWM, Emacs, Racket など)
-ls ~/Applications/"Home Manager Apps"
-
-# launchd agent (AeroSpace, OmniWM の枠再描画 watcher)
-launchctl list | grep -E 'aerospace|omniwm'
-
-# 直接リンクしている設定が ~/dotfiles を指しているか
-readlink ~/.config/nvim ~/.config/karabiner ~/.claude/settings.json
 ```
+
+```text
+/Users/<you>/.nix-profile/bin/kubectl
+/opt/homebrew/bin/kubectl
+/Users/<you>/.nix-profile/bin/cmake
+/opt/homebrew/bin/cmake
+/Users/<you>/.nix-profile/bin/emacs
+/Users/<you>/.nix-profile/bin/codex
+```
+
+nix で入れた GUI アプリは `~/Applications/Home Manager Apps` に入る。
+
+```sh
+ls ~/Applications/"Home Manager Apps"
+```
+
+```text
+AeroSpace.app  Emacs.app  OmniWM.app  pinentry-mac.app  TemporaryWindow.app  WezTerm.app
+```
+
+launchd agent (AeroSpace と OmniWM の枠再描画 watcher) が動いている。1列目は PID、2列目は直近の終了ステータスで `0` になっていればよい。
+
+```sh
+launchctl list | grep -E 'aerospace|omniwm'
+```
+
+```text
+77548   0       org.nix-community.home.aerospace
+61977   0       org.nixos.omniwm-border-refresh
+```
+
+直接リンクしている設定が `~/dotfiles` を指している。素の `readlink` は途中の `/nix/store/...-home-manager-files/...` で止まるので、`-f` で最後までたどる。
+
+```sh
+readlink -f ~/.config/nvim ~/.config/karabiner ~/.claude/settings.json
+```
+
+```text
+/Users/<you>/dotfiles/nvim
+/Users/<you>/dotfiles/karabiner
+/Users/<you>/dotfiles/.claude/settings.json
+```
+
+`/nix/store/...` で終わる場合、そのファイルは repo へのリンクではなく store のコピーになっている。
 
 AeroSpace / OmniWM / Karabiner-Elements の Accessibility 権限は宣言できない。初回と、nix で入れたアプリが更新されたあとに System Settings → Privacy & Security → Accessibility で許可する。
 
