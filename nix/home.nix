@@ -282,7 +282,6 @@
     parallel
     qemu
     redis
-    sheldon
     zsh-syntax-highlighting
     racket
     emacs
