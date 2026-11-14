@@ -3,7 +3,7 @@ function ColorMyPencils(color)
 	-- color = color or "nord"
 	-- color = color or "rose-pine"
 	-- color = color or "tokyonight"
-	color = "kanagawa"
+	color = "kanagawa-dragon"
 	-- color = color or "catppuccin"
 	-- color = "onehalfdark"
 	vim.cmd.colorscheme(color)
