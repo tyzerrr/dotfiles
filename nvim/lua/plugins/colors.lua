@@ -3,9 +3,9 @@ function ColorMyPencils(color)
 	-- color = color or "nord"
 	-- color = color or "rose-pine"
 	-- color = color or "tokyonight"
-	-- color = "kanagawa"
+	color = "kanagawa"
 	-- color = color or "catppuccin"
-	color = "onehalfdark"
+	-- color = "onehalfdark"
 	vim.cmd.colorscheme(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
@@ -38,24 +38,24 @@ return {
 	-- 		-- ColorMyPencils()
 	-- 	end,
 	-- },
-	-- {
-	--     "rebelot/kanagawa.nvim",
-	--     lazy = false,    -- 起動時にロード
-	--     priority = 1000, -- 他のUIプラグインより先にロード
-	--     config = function()
-	--         vim.cmd.colorscheme "kanagawa-dragon"
-	--         ColorMyPencils()
-	--     end,
-	-- }
 	{
-		"sonph/onehalf",
-		name = "onehalfdark",
-		lazy = false,
-		priority = 1000,
-		-- colorscheme はリポジトリ直下ではなく vim/ 配下にあるため rtp を指定する
-		config = function(plugin)
-			vim.opt.rtp:append(plugin.dir .. "/vim")
-			vim.cmd.colorscheme("onehalfdark")
+		"rebelot/kanagawa.nvim",
+		lazy = false, -- 起動時にロード
+		priority = 1000, -- 他のUIプラグインより先にロード
+		config = function()
+			vim.cmd.colorscheme("kanagawa-dragon")
+			ColorMyPencils()
 		end,
 	},
+	-- {
+	-- 	"sonph/onehalf",
+	-- 	name = "onehalfdark",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	-- colorscheme はリポジトリ直下ではなく vim/ 配下にあるため rtp を指定する
+	-- 	config = function(plugin)
+	-- 		vim.opt.rtp:append(plugin.dir .. "/vim")
+	-- 		vim.cmd.colorscheme("onehalfdark")
+	-- 	end,
+	-- },
 }
